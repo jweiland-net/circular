@@ -1,0 +1,81 @@
+plugin.tx_circular {
+  view {
+    templateRootPaths {
+      0 = EXT:circular/Resources/Private/Templates/
+      1 = {$plugin.tx_circular.view.templateRootPath}
+    }
+    partialRootPaths {
+      0 = EXT:circular/Resources/Private/Partials/
+      1 = {$plugin.tx_circular.view.partialRootPath}
+    }
+    layoutRootPaths {
+      0 = EXT:circular/Resources/Private/Layouts/
+      1 = {$plugin.tx_circular.view.layoutRootPath}
+    }
+  }
+
+  persistence {
+    storagePid = {$plugin.tx_circular.persistence.storagePid}
+    classes {
+      JWeiland\Circular\Domain\Model\SysDmail {
+        newRecordStoragePid = 0
+        mapping {
+          tableName = sys_dmail
+          columns {
+            # there is no TCA for mailcontent in direct_mail configured, so content for this field was not saved
+            mailcontent {
+              config {
+                type = passthrough
+              }
+            }
+
+            # there is no TCA for query_info in direct_mail configured, so content for this field was not saved
+            query_info {
+              config {
+                type = passthrough
+              }
+            }
+          }
+        }
+      }
+
+      JWeiland\Circular\Domain\Model\Telephone {
+        mapping {
+          tableName = tx_telephonedirectory_domain_model_employee
+        }
+      }
+    }
+  }
+
+  features {
+    # uncomment the following line to enable the new Property Mapper.
+    rewrittenPropertyMapper = 1
+  }
+
+  settings {
+    pidOfTelephoneDirectory = 0
+  }
+}
+
+# Module configuration
+module.tx_circular < plugin.tx_circular
+module.tx_circular {
+  persistence.storagePid = {$module.tx_circular.persistence.storagePid}
+  view {
+    templateRootPath = {$module.tx_circular.view.templateRootPath}
+    partialRootPath = {$module.tx_circular.view.partialRootPath}
+    layoutRootPath = {$module.tx_circular.view.layoutRootPath}
+  }
+}
+
+plugin.tx_circular._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+)

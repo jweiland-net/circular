@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular">
+		<header/>
+		<body>
+
+			<trans-unit id="fromEmail">
+				<source>From E-Mail</source>
+			</trans-unit>
+			<trans-unit id="fromName">
+				<source>From Name</source>
+			</trans-unit>
+			<trans-unit id="replytoEmail">
+				<source>Reply To E-Mail</source>
+			</trans-unit>
+			<trans-unit id="replytoName">
+				<source>Reply To Name</source>
+			</trans-unit>
+			<trans-unit id="organisation">
+				<source>Organisation</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

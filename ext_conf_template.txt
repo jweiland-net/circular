@@ -1,0 +1,10 @@
+# cat=basic; type=string; label = LLL:EXT:circular/Resources/Private/Language/ExtConf.xlf:fromEmail
+fromEmail =
+# cat=basic; type=string; label = LLL:EXT:circular/Resources/Private/Language/ExtConf.xlf:fromName
+fromName =
+# cat=basic; type=string; label = LLL:EXT:circular/Resources/Private/Language/ExtConf.xlf:replytoEmail
+replytoEmail =
+# cat=basic; type=string; label = LLL:EXT:circular/Resources/Private/Language/ExtConf.xlf:replytoName
+replytoName =
+# cat=basic; type=string; label = LLL:EXT:circular/Resources/Private/Language/ExtConf.xlf:organisation
+organisation =

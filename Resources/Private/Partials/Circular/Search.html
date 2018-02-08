@@ -1,0 +1,47 @@
+<div class="extsearch gridright clearfix">
+	<f:form action="search" name="search">
+		<div class="grid_4 extsearchdiv">
+			<div class="gridright">
+				<f:form.textfield id="dateBegin" name="search[dateBegin]" value="{dateBegin}" />
+			</div>
+		</div>
+		<div class="grid_4 extsearchdiv">
+			<div class="gridright">
+				<f:form.textfield id="dateEnd" name="search[dateEnd]" value="{dateEnd}" />
+			</div>
+		</div>
+		<div class="grid_4 extsearchdiv">
+			<div class="gridright">
+				<f:form.select name="search[department]" options="{departments}" optionValueField="uid" optionLabelField="title"
+					/>
+			</div>
+		</div>
+		<div class="grid_4 extsearchdiv">
+			<div class="gridright">
+				<f:form.select name="search[category]" options="{categories}" optionValueField="key" optionLabelField="value" />
+			</div>
+		</div>
+		<div class="grid_4 extsearchdiv">
+			<div class="gridright">
+				<f:form.textfield name="search[search]" value="{search}" />
+			</div>
+		</div>
+    <div class="grid_4 extsearchdiv extsubmitdiv">
+			<div class="gridright">
+				<div class="submitwrap">
+					<f:form.submit value="{f:translate(key: 'search')}" />
+				</div>
+			</div>
+		</div>
+	</f:form>
+</div>
+
+<script type="text/javascript">
+	jQuery(function() {
+		/* <![CDATA[ */
+		jQuery( "#dateBegin, #dateEnd" ).datepicker({
+			dateFormat: "dd.mm.yy"
+		});
+		/* ]]> */
+	});
+</script>
