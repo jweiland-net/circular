@@ -28,25 +28,29 @@ class ExtConf implements SingletonInterface
      *
      * @var string
      */
-    protected $fromEmail;
+    protected $fromEmail = '';
+
     /**
      * from_name
      *
      * @var string
      */
-    protected $fromName;
+    protected $fromName = '';
+
     /**
      * replytoEmail
      *
      * @var string
      */
-    protected $replytoEmail;
+    protected $replytoEmail = '';
+
     /**
      * replytoName
      *
      * @var string
      */
-    protected $replytoName;
+    protected $replytoName = '';
+
     /**
      * organisation
      *
