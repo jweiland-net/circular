@@ -14,13 +14,11 @@ namespace JWeiland\Circular\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extensionmanager\Domain\Model\Repository;
-
 /**
  * Class DepartmentRepository
  *
  * @package JWeiland\Circular\Domain\Repository
  */
-class DepartmentRepository extends Repository
+class DepartmentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 }
