@@ -17,7 +17,6 @@ if (!defined('TYPO3_MODE')) {
         'Circular' => ''
     ]
 );
-if (TYPO3_MODE === 'BE') {
-    // move files from uploads/tx_files to uploads/tx_circular
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = FilesCommandController::class;
-}
+
+// move files from uploads/tx_files to uploads/tx_circular
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = FilesCommandController::class;

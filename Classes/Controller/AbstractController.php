@@ -123,7 +123,7 @@ class AbstractController extends ActionController
      *
      * @param string $table
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $telephones
-     * @return string serialized query info fir sysDmail
+     * @return string serialized query info for sysDmail
      */
     public function buildQueryInfo($table, QueryResultInterface $telephones)
     {

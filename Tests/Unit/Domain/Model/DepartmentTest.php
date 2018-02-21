@@ -4,7 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2013 Stefan Froemken <sfroemken@jweiland.net>, jweiland.net
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -58,7 +58,7 @@ class Tx_Circular_Domain_Model_DepartmentTest extends Tx_Extbase_Tests_Unit_Base
 	/**
 	 * @test
 	 */
-	public function setTitleForStringSetsTitle() { 
+	public function setTitleForStringSetsTitle() {
 		$this->fixture->setTitle('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -66,6 +66,5 @@ class Tx_Circular_Domain_Model_DepartmentTest extends Tx_Extbase_Tests_Unit_Base
 			$this->fixture->getTitle()
 		);
 	}
-	
+
 }
-?>

@@ -3,8 +3,29 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-$TCA['tx_circular_domain_model_department'] = [
-    'ctrl' => $TCA['tx_circular_domain_model_department']['ctrl'],
+return [
+    'ctrl' => [
+        'title' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_category',
+        'label' => 'title',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => true,
+        'versioningWS' => 2,
+        'versioning_followPages' => true,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'delete' => 'deleted',
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime'
+        ],
+        'searchFields' => 'title',
+        'iconfile' => 'EXT:circular/Resources/Public/Icons/tx_circular_domain_model_category.gif'
+    ],
     'interface' => [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title'
     ],
@@ -37,8 +58,8 @@ $TCA['tx_circular_domain_model_department'] = [
                 'items' => [
                     ['', 0]
                 ],
-                'foreign_table' => 'tx_circular_domain_model_department',
-                'foreign_table_where' => 'AND tx_circular_domain_model_department.pid=###CURRENT_PID### AND tx_circular_domain_model_department.sys_language_uid IN (-1,0)'
+                'foreign_table' => 'tx_circular_domain_model_category',
+                'foreign_table_where' => 'AND tx_circular_domain_model_category.pid=###CURRENT_PID### AND tx_circular_domain_model_category.sys_language_uid IN (-1,0)'
             ]
         ],
         'l10n_diffsource' => [
@@ -95,7 +116,7 @@ $TCA['tx_circular_domain_model_department'] = [
         ],
         'title' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_department.title',
+            'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_category.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

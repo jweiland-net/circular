@@ -55,7 +55,12 @@ class CircularController extends AbstractController
      * action prepare
      *
      * @param array $circulars
+     *
      * @return void
+     *
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      */
     public function prepareAction(array $circulars = [])
     {

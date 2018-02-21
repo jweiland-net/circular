@@ -4,7 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2013 Stefan Froemken <sfroemken@jweiland.net>, jweiland.net
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -58,4 +58,3 @@ class Tx_Circular_Controller_CircularControllerTest extends Tx_Extbase_Tests_Uni
 	}
 
 }
-?>

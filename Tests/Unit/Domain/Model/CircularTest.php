@@ -4,7 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2013 Stefan Froemken <sfroemken@jweiland.net>, jweiland.net
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -58,7 +58,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 	/**
 	 * @test
 	 */
-	public function setNumberForStringSetsNumber() { 
+	public function setNumberForStringSetsNumber() {
 		$this->fixture->setNumber('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -66,7 +66,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 			$this->fixture->getNumber()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -75,7 +75,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 	/**
 	 * @test
 	 */
-	public function setTitleForStringSetsTitle() { 
+	public function setTitleForStringSetsTitle() {
 		$this->fixture->setTitle('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -83,7 +83,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 			$this->fixture->getTitle()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -92,7 +92,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 	/**
 	 * @test
 	 */
-	public function setCategoryForStringSetsCategory() { 
+	public function setCategoryForStringSetsCategory() {
 		$this->fixture->setCategory('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -100,7 +100,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 			$this->fixture->getCategory()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -110,11 +110,11 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 	 * @test
 	 */
 	public function setDateOfCircularForDateTimeSetsDateOfCircular() { }
-	
+
 	/**
 	 * @test
 	 */
-	public function getSendReturnsInitialValueForBoolean() { 
+	public function getSendReturnsInitialValueForBoolean() {
 		$this->assertSame(
 			TRUE,
 			$this->fixture->getSend()
@@ -124,7 +124,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 	/**
 	 * @test
 	 */
-	public function setSendForBooleanSetsSend() { 
+	public function setSendForBooleanSetsSend() {
 		$this->fixture->setSend(TRUE);
 
 		$this->assertSame(
@@ -132,11 +132,11 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 			$this->fixture->getSend()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
-	public function getDepartmentReturnsInitialValueForTx_Circular_Domain_Model_Department() { 
+	public function getDepartmentReturnsInitialValueForTx_Circular_Domain_Model_Department() {
 		$this->assertEquals(
 			NULL,
 			$this->fixture->getDepartment()
@@ -146,7 +146,7 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 	/**
 	 * @test
 	 */
-	public function setDepartmentForTx_Circular_Domain_Model_DepartmentSetsDepartment() { 
+	public function setDepartmentForTx_Circular_Domain_Model_DepartmentSetsDepartment() {
 		$dummyObject = new Tx_Circular_Domain_Model_Department();
 		$this->fixture->setDepartment($dummyObject);
 
@@ -155,6 +155,5 @@ class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTe
 			$this->fixture->getDepartment()
 		);
 	}
-	
+
 }
-?>

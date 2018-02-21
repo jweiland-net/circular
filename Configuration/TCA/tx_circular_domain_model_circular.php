@@ -2,8 +2,31 @@
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
-$TCA['tx_circular_domain_model_circular'] = [
-    'ctrl' => $TCA['tx_circular_domain_model_circular']['ctrl'],
+
+return [
+    'ctrl' => [
+        'title' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular',
+        'label' => 'number',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => true,
+        'default_sortby' => 'ORDER BY crdate DESC',
+        'versioningWS' => 2,
+        'versioning_followPages' => true,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'delete' => 'deleted',
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime'
+        ],
+        'searchFields' => 'number,title',
+        'iconfile' => 'EXT:circular/Resources/Public/Icons/tx_circular_domain_model_circular.gif'
+    ],
     'interface' => [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, number, title, category, date_of_circular, department, file_name, files'
     ],
