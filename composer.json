@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "JWeiland\\Yellowpages2\\": "Classes"
+      "JWeiland\\Circular\\": "Classes"
     }
   }
 }
