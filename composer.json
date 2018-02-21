@@ -20,7 +20,7 @@
   "require": {
     "typo3/cms-core": "^8.5",
     "jweiland/telephonedirectory": "^1.0",
-    "directmailteam/direct-mail ": "^5.2"
+    "directmailteam/direct-mail": "^5.2"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.8.0"
