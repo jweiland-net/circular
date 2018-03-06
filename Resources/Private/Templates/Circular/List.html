@@ -1,54 +1,42 @@
-<f:layout name="Default" />
+<f:layout name="Default"/>
 
 <f:section name="main">
-
-	<script>
-		jQuery( document ).ready( function() {
-			<![CDATA[
-			jQuery( "#dialogHint" ).dialog({
-				autoOpen: false,
-				height: 150,
-				width: 300,
-				modal: true
-			});
-
-			jQuery( "dd.showHint" )
-				.css( 'cursor', 'pointer' )
-				.click( function() {
-					jQuery( "#dialogHint" ).dialog( "open" );
-				});
-			]]>
-		});
-	</script>
-<div class="grid_8">
-	<div class="gridright">
-		<f:for each="{circulars}" as="circular">
-			<div>
-				<h3 class="noborder nomargin">{circular.title}</h3>
-				<div class="informations">
-					{circular.category.title}<br/>
-					{circular.number} <f:translate key="of" /> {circular.dateOfCircular -> f:format.date(format: 'd.m.Y')},
-					<br/>{circular.department.title}
+	<div class="grid_8">
+		<div class="gridright">
+			<f:for each="{circulars}" as="circular">
+				<div>
+					<h3 class="noborder nomargin">{circular.title}</h3>
+					<div class="informations">
+						{circular.category.title}<br/>
+						{circular.number}
+						<f:translate key="of"/>
+						{circular.dateOfCircular -> f:format.date(format: 'd.m.Y')},
+						<br/>{circular.department.title}
+					</div>
+					<dl class="extdl">
+						<f:if condition="{circular.files}">
+							<f:then>
+								<f:for each="{circular.files}" as="file">
+									<dd>
+										<a href="uploads/tx_circular/{file}" target="_blank" title="{circular.title}">
+											<span aria-hidden="true" class="icon-download"></span>
+											{circular.fileName}
+										</a>
+									</dd>
+								</f:for>
+							</f:then>
+							<f:else>
+								<dd class="showHint">
+									<f:translate key="hint"/>
+								</dd>
+							</f:else>
+						</f:if>
+					</dl>
 				</div>
-				<dl class="extdl">
-				<f:if condition="{circular.files}">
-					<f:then>
-						<f:for each="{circular.files}" as="file">
-							<dd><a href="uploads/tx_circular/{file}" target="_blank" title="{circular.title}"><span aria-hidden="true" class="icon-download"></span>{circular.fileName}</a></dd>
-						</f:for>
-					</f:then>
-					<f:else>
-						<dd class="showHint">
-							<f:translate key="hint"/>
-						</dd>
-					</f:else>
-				</f:if>
-				</dl>
+			</f:for>
+			<div id="dialogHint" title="{f:translate(key: 'hint')}">
+				<p>{settings.textForHint}</p>
 			</div>
-		</f:for>
-		<div id="dialogHint" title="{f:translate(key: 'hint')}">
-			<p>{settings.textForHint}</p>
 		</div>
 	</div>
-</div>
 </f:section>
