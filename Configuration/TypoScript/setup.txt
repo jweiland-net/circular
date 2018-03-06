@@ -47,11 +47,6 @@ plugin.tx_circular {
     }
   }
 
-  features {
-    # uncomment the following line to enable the new Property Mapper.
-    rewrittenPropertyMapper = 1
-  }
-
   settings {
     pidOfTelephoneDirectory = 0
   }
@@ -62,9 +57,15 @@ module.tx_circular < plugin.tx_circular
 module.tx_circular {
   persistence.storagePid = {$module.tx_circular.persistence.storagePid}
   view {
-    templateRootPath = {$module.tx_circular.view.templateRootPath}
-    partialRootPath = {$module.tx_circular.view.partialRootPath}
-    layoutRootPath = {$module.tx_circular.view.layoutRootPath}
+    templateRootPaths {
+      0 = {$module.tx_circular.view.templateRootPath}
+    }
+    partialRootPaths {
+      0 = {$module.tx_circular.view.partialRootPath}
+    }
+    layoutRootPaths {
+      0 = {$module.tx_circular.view.layoutRootPath}
+    }
   }
 }
 
