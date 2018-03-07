@@ -69,7 +69,7 @@ class FilesCommandController extends CommandController
                         $targetFile = PATH_site . 'uploads/tx_circular/' . $file;
                         $this->moveFile($sourceFile, $targetFile);
                         $i++;
-                        if ($i === self::MAXIMUM_LINE_LENGTH) {
+                        if ($i === $this->output->getMaximumLineLength()) {
                             $this->output(\PHP_EOL);
                             $i = 0;
                         }
