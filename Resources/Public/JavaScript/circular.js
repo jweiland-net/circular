@@ -11,8 +11,4 @@ jQuery(document).ready(function () {
         .click(function () {
             jQuery("#dialogHint").dialog("open");
         });
-
-    jQuery( "#dateBegin, #dateEnd" ).datepicker({
-        dateFormat: "dd.mm.yy"
-    });
 });

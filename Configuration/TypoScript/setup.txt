@@ -69,6 +69,10 @@ module.tx_circular {
   }
 }
 
+page.includeJSFooterlibs {
+  circular = EXT:circular/Resources/Public/JavaScript/circular.js
+}
+
 plugin.tx_circular._CSS_DEFAULT_STYLE (
 	textarea.f3-form-error {
 		background-color:#FF9F9F;
