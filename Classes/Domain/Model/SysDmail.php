@@ -106,7 +106,7 @@ class SysDmail extends AbstractEntity
     protected $plainparams = '&type=99';
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $issent = false;
 
