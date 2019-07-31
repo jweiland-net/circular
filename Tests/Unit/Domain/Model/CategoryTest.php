@@ -19,16 +19,16 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
 /**
  * Test case.
  */
-class DepartmentTest extends UnitTestCase
+class CategoryTest extends UnitTestCase
 {
     /**
-     * @var Department
+     * @var Category
      */
     protected $subject;
 
     public function setUp()
     {
-        $this->subject = new Department();
+        $this->subject = new Category();
     }
 
     public function tearDown()

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Domain\Repository;
 
 /*
@@ -14,13 +15,14 @@ namespace JWeiland\Circular\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * Class CircularRepository
- *
- * @package JWeiland\Circular\Domain\Repository
+ * Main repository to list and find circulars
  */
 class CircularRepository extends Repository
 {
@@ -32,16 +34,31 @@ class CircularRepository extends Repository
     ];
 
     /**
-     * this method is needed by command controller to find
+     * This method is needed by command controller to find
      * visible, hidden and deleted circulars
      *
      * @return array
      */
-    public function getCirculars()
+    public function getCirculars(): array
     {
+        /** @var Query $query */
         $query = $this->createQuery();
-        $query->statement('SELECT uid, files FROM tx_circular_domain_model_circular');
 
-        return $query->execute(true);
+        $queryBuilder = $this->getConnectionPool()->getQueryBuilderForTable('tx_circular_domain_model_circular');
+        $queryBuilder
+            ->select('uid', 'files')
+            ->from('tx_circular_domain_model_circular');
+
+        return $query->statement($queryBuilder)->execute(true);
+    }
+
+    /**
+     * Get TYPO3s Connection Pool
+     *
+     * @return ConnectionPool
+     */
+    protected function getConnectionPool()
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class);
     }
 }

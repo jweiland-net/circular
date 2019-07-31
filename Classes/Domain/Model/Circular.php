@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace JWeiland\Circular\Domain\Model;
 
 /*
@@ -19,44 +19,32 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
- * Class Circular
- *
- * @package JWeiland\Circular\Domain\Model
+ * Main domain model for circulars
  */
 class Circular extends AbstractEntity
 {
     /**
-     * Number
-     *
      * @var string
      * @validate NotEmpty
      */
     protected $number = '';
 
     /**
-     * Title
-     *
      * @var string
      */
     protected $title = '';
 
     /**
-     * Category
-     *
      * @var \JWeiland\Circular\Domain\Model\Category
      */
     protected $category;
 
     /**
-     * Date of Circular
-     *
      * @var \DateTime
      */
     protected $dateOfCircular;
 
     /**
-     * Department
-     *
      * @var \JWeiland\Circular\Domain\Model\Department
      * @lazy
      */
@@ -70,23 +58,17 @@ class Circular extends AbstractEntity
     protected $send = false;
 
     /**
-     * FileName
-     *
      * @var string
      */
     protected $fileName = '';
 
     /**
-     * Files
-     *
      * @var string
      */
     protected $files = '';
 
     /**
-     * Returns the number
-     *
-     * @return string $number
+     * @return string
      */
     public function getNumber(): string
     {
@@ -94,10 +76,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the number
-     *
      * @param string $number
-     * @return void
      */
     public function setNumber(string $number)
     {
@@ -105,9 +84,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the title
-     *
-     * @return string $title
+     * @return string
      */
     public function getTitle(): string
     {
@@ -115,10 +92,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the title
-     *
      * @param string $title
-     * @return void
      */
     public function setTitle(string $title)
     {
@@ -126,9 +100,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the category
-     *
-     * @return Category $category
+     * @return Category
      */
     public function getCategory()
     {
@@ -136,10 +108,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the category
-     *
      * @param Category $category
-     * @return void
      */
     public function setCategory(Category $category)
     {
@@ -147,9 +116,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the dateOfCircular
-     *
-     * @return \DateTime $dateOfCircular
+     * @return \DateTime
      */
     public function getDateOfCircular()
     {
@@ -157,10 +124,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the dateOfCircular
-     *
      * @param \DateTime $dateOfCircular
-     * @return void
      */
     public function setDateOfCircular(\DateTime $dateOfCircular)
     {
@@ -168,9 +132,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the department
-     *
-     * @return Department $department
+     * @return Department
      */
     public function getDepartment()
     {
@@ -178,10 +140,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the department
-     *
      * @param Department $department
-     * @return void
      */
     public function setDepartment(Department $department)
     {
@@ -189,9 +148,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the send
-     *
-     * @return bool $send
+     * @return bool
      */
     public function getSend(): bool
     {
@@ -199,8 +156,6 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the bool state of send
-     *
      * @return bool
      */
     public function isSend(): bool
@@ -209,10 +164,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the send
-     *
      * @param bool $send
-     * @return void
      */
     public function setSend(bool $send)
     {
@@ -220,9 +172,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the fileName
-     *
-     * @return string $fileName
+     * @return string
      */
     public function getFileName(): string
     {
@@ -230,10 +180,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the fileName
-     *
      * @param string $fileName
-     * @return void
      */
     public function setFileName(string $fileName)
     {
@@ -241,9 +188,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Returns the files
-     *
-     * @return array $files
+     * @return array
      */
     public function getFiles(): array
     {
@@ -251,10 +196,7 @@ class Circular extends AbstractEntity
     }
 
     /**
-     * Sets the files
-     *
      * @param string $files
-     * @return void
      */
     public function setFiles(string $files)
     {

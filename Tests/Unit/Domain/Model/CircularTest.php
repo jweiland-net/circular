@@ -1,159 +1,337 @@
 <?php
+namespace JWeiland\Circular\Domain\Model;
 
-/***************************************************************
- *  Copyright notice
+/*
+ * This file is part of the circular project.
  *
- *  (c) 2013 Stefan Froemken <sfroemken@jweiland.net>, jweiland.net
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
- *  All rights reserved
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
  *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * The TYPO3 project - inspiring people to share!
+ */
+
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
- * Test case for class Tx_Circular_Domain_Model_Circular.
- *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
- * @package TYPO3
- * @subpackage Circular
- *
- * @author Stefan Froemken <sfroemken@jweiland.net>
+ * Test case.
  */
-class Tx_Circular_Domain_Model_CircularTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
-	/**
-	 * @var Tx_Circular_Domain_Model_Circular
-	 */
-	protected $fixture;
+class CircularTest extends UnitTestCase
+{
+    /**
+     * @var Circular
+     */
+    protected $subject;
 
-	public function setUp() {
-		$this->fixture = new Tx_Circular_Domain_Model_Circular();
-	}
+    public function setUp()
+    {
+        $this->subject = new Circular();
+    }
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function tearDown()
+    {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function getNumberReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function getNumberInitiallyReturnsEmptyString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getNumber()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setNumberForStringSetsNumber() {
-		$this->fixture->setNumber('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setNumberSetsNumber()
+    {
+        $this->subject->setNumber('foo bar');
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getNumber()
-		);
-	}
+        $this->assertSame(
+            'foo bar',
+            $this->subject->getNumber()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getTitleReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setNumberWithIntegerResultsInString()
+    {
+        $this->subject->setNumber(123);
+        $this->assertSame('123', $this->subject->getNumber());
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTitleForStringSetsTitle() {
-		$this->fixture->setTitle('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setNumberWithBooleanResultsInString()
+    {
+        $this->subject->setNumber(true);
+        $this->assertSame('1', $this->subject->getNumber());
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getTitle()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getTitleInitiallyReturnsEmptyString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getTitle()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getCategoryReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setTitleSetsTitle()
+    {
+        $this->subject->setTitle('foo bar');
 
-	/**
-	 * @test
-	 */
-	public function setCategoryForStringSetsCategory() {
-		$this->fixture->setCategory('Conceived at T3CON10');
+        $this->assertSame(
+            'foo bar',
+            $this->subject->getTitle()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getCategory()
-		);
-	}
+    /**
+     * @test
+     */
+    public function setTitleWithIntegerResultsInString()
+    {
+        $this->subject->setTitle(123);
+        $this->assertSame('123', $this->subject->getTitle());
+    }
 
-	/**
-	 * @test
-	 */
-	public function getDateOfCircularReturnsInitialValueForDateTime() { }
+    /**
+     * @test
+     */
+    public function setTitleWithBooleanResultsInString()
+    {
+        $this->subject->setTitle(true);
+        $this->assertSame('1', $this->subject->getTitle());
+    }
 
-	/**
-	 * @test
-	 */
-	public function setDateOfCircularForDateTimeSetsDateOfCircular() { }
+    /**
+     * @test
+     */
+    public function getCategoryInitiallyReturnsNull()
+    {
+        $this->assertNull($this->subject->getCategory());
+    }
 
-	/**
-	 * @test
-	 */
-	public function getSendReturnsInitialValueForBoolean() {
-		$this->assertSame(
-			TRUE,
-			$this->fixture->getSend()
-		);
-	}
+    /**
+     * @test
+     */
+    public function setCategorySetsCategory()
+    {
+        $instance = new Category();
+        $this->subject->setCategory($instance);
 
-	/**
-	 * @test
-	 */
-	public function setSendForBooleanSetsSend() {
-		$this->fixture->setSend(TRUE);
+        $this->assertSame(
+            $instance,
+            $this->subject->getCategory()
+        );
+    }
 
-		$this->assertSame(
-			TRUE,
-			$this->fixture->getSend()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getDateOfCircularInitiallyReturnsNull()
+    {
+        $this->assertNull(
+            $this->subject->getDateOfCircular()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getDepartmentReturnsInitialValueForTx_Circular_Domain_Model_Department() {
-		$this->assertEquals(
-			NULL,
-			$this->fixture->getDepartment()
-		);
-	}
+    /**
+     * @test
+     */
+    public function setDateOfCircularSetsDateOfCircular()
+    {
+        $date = new \DateTime();
+        $this->subject->setDateOfCircular($date);
 
-	/**
-	 * @test
-	 */
-	public function setDepartmentForTx_Circular_Domain_Model_DepartmentSetsDepartment() {
-		$dummyObject = new Tx_Circular_Domain_Model_Department();
-		$this->fixture->setDepartment($dummyObject);
+        $this->assertSame(
+            $date,
+            $this->subject->getDateOfCircular()
+        );
+    }
 
-		$this->assertSame(
-			$dummyObject,
-			$this->fixture->getDepartment()
-		);
-	}
+    /**
+     * @return array
+     */
+    public function dataProviderForSetDateOfCircular()
+    {
+        $arguments = array();
+        $arguments['set DateOfCircular with Null'] = array(null);
+        $arguments['set DateOfCircular with Integer'] = array(1234567890);
+        $arguments['set DateOfCircular with Integer as String'] = array('1234567890');
+        $arguments['set DateOfCircular with String'] = array('Hi all together');
+        return $arguments;
+    }
 
+    /**
+     * @test
+     *
+     * @dataProvider dataProviderForSetDateOfCircular
+     * @expectedException \Exception
+     */
+    public function setDateOfCircularWithInvalidValuesResultsInException($argument)
+    {
+        $this->subject->setDateOfCircular($argument);
+    }
+
+    /**
+     * @test
+     */
+    public function getDepartmentInitiallyReturnsNull()
+    {
+        $this->assertNull($this->subject->getDepartment());
+    }
+
+    /**
+     * @test
+     */
+    public function setDepartmentSetsDepartment()
+    {
+        $instance = new Department();
+        $this->subject->setDepartment($instance);
+
+        $this->assertSame(
+            $instance,
+            $this->subject->getDepartment()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSendInitiallyReturnsFalse()
+    {
+        $this->assertFalse(
+            $this->subject->getSend()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSendSetsSend()
+    {
+        $this->subject->setSend(true);
+        $this->assertTrue(
+            $this->subject->getSend()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSendWithStringReturnsTrue()
+    {
+        $this->subject->setSend('foo bar');
+        $this->assertTrue($this->subject->getSend());
+    }
+
+    /**
+     * @test
+     */
+    public function setSendWithZeroReturnsFalse()
+    {
+        $this->subject->setSend(0);
+        $this->assertFalse($this->subject->getSend());
+    }
+
+    /**
+     * @test
+     */
+    public function getFileNameInitiallyReturnsEmptyString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getFileName()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setFileNameSetsFileName()
+    {
+        $this->subject->setFileName('foo bar');
+
+        $this->assertSame(
+            'foo bar',
+            $this->subject->getFileName()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setFileNameWithIntegerResultsInString()
+    {
+        $this->subject->setFileName(123);
+        $this->assertSame('123', $this->subject->getFileName());
+    }
+
+    /**
+     * @test
+     */
+    public function setFileNameWithBooleanResultsInString()
+    {
+        $this->subject->setFileName(true);
+        $this->assertSame('1', $this->subject->getFileName());
+    }
+
+    /**
+     * @test
+     */
+    public function getFilesInitiallyReturnsEmptyString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getFiles()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setFilesSetsFiles()
+    {
+        $this->subject->setFiles('foo bar');
+
+        $this->assertSame(
+            'foo bar',
+            $this->subject->getFiles()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setFilesWithIntegerResultsInString()
+    {
+        $this->subject->setFiles(123);
+        $this->assertSame('123', $this->subject->getFiles());
+    }
+
+    /**
+     * @test
+     */
+    public function setFilesWithBooleanResultsInString()
+    {
+        $this->subject->setFiles(true);
+        $this->assertSame('1', $this->subject->getFiles());
+    }
 }

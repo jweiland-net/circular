@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace JWeiland\Circular\Domain\Model;
 
 /*
@@ -18,37 +18,27 @@ namespace JWeiland\Circular\Domain\Model;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
- * Class Telephone
- *
- * @package JWeiland\Circular\Domain\Model
+ * Domain model for telephones
  */
 class Telephone extends AbstractEntity
 {
     /**
-     * first_name
-     *
      * @var string
      */
     protected $firstName = '';
 
     /**
-     * last_name
-     *
      * @var string
      */
     protected $lastName = '';
 
     /**
-     * email
-     *
      * @var string
      */
     protected $email = '';
 
     /**
-     * Returns the firstName
-     *
-     * @return string $firstName
+     * @return string
      */
     public function getFirstName(): string
     {
@@ -56,10 +46,7 @@ class Telephone extends AbstractEntity
     }
 
     /**
-     * Sets the firstName
-     *
      * @param string $firstName
-     * @return void
      */
     public function setFirstName(string $firstName)
     {
@@ -67,9 +54,7 @@ class Telephone extends AbstractEntity
     }
 
     /**
-     * Returns the lastName
-     *
-     * @return string $lastName
+     * @return string
      */
     public function getLastName(): string
     {
@@ -77,10 +62,7 @@ class Telephone extends AbstractEntity
     }
 
     /**
-     * Sets the lastName
-     *
      * @param string $lastName
-     * @return void
      */
     public function setLastName(string $lastName)
     {
@@ -88,9 +70,7 @@ class Telephone extends AbstractEntity
     }
 
     /**
-     * Returns the email
-     *
-     * @return string $email
+     * @return string
      */
     public function getEmail(): string
     {
@@ -98,10 +78,7 @@ class Telephone extends AbstractEntity
     }
 
     /**
-     * Sets the email
-     *
      * @param string $email
-     * @return void
      */
     public function setEmail(string $email)
     {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Controller;
 
 /*
@@ -21,16 +22,12 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
- * Class CircularController
- *
- * @package JWeiland\Circular\Controller
+ * Main controller to list and show circulars
  */
 class CircularController extends AbstractController
 {
     /**
-     * action list
-     *
-     * @return void
+     * Action list
      */
     public function listAction()
     {
@@ -41,10 +38,9 @@ class CircularController extends AbstractController
     }
 
     /**
-     * action show
+     * Action show
      *
      * @param Circular $circular
-     * @return void
      */
     public function showAction(Circular $circular)
     {
@@ -52,12 +48,9 @@ class CircularController extends AbstractController
     }
 
     /**
-     * action prepare
+     * Action prepare
      *
      * @param array $circulars
-     *
-     * @return void
-     *
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
@@ -106,12 +99,12 @@ class CircularController extends AbstractController
     }
 
     /**
-     * get mail content
+     * Get mail content
      *
      * @param Circular $circular
      * @return string
      */
-    public function getMailContent(Circular $circular)
+    public function getMailContent(Circular $circular): string
     {
         $baseUri = $this->getControllerContext()->getRequest()->getBaseUri();
         $baseUriForFe = \substr($baseUri, 0, -6);

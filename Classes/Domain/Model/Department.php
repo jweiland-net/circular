@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace JWeiland\Circular\Domain\Model;
 
 /*
@@ -18,24 +18,18 @@ namespace JWeiland\Circular\Domain\Model;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
- * Class Department
- *
- * @package JWeiland\Circular\Domain\Model
+ * Domain model for departments
  */
 class Department extends AbstractEntity
 {
     /**
-     * Title
-     *
      * @var string
      * @validate NotEmpty
      */
     protected $title = '';
 
     /**
-     * Returns the title
-     *
-     * @return string $title
+     * @return string
      */
     public function getTitle(): string
     {
@@ -43,10 +37,7 @@ class Department extends AbstractEntity
     }
 
     /**
-     * Sets the title
-     *
      * @param string $title
-     * @return void
      */
     public function setTitle(string $title)
     {
