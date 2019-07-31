@@ -18,8 +18,8 @@
     "source": "https://github.com/jweiland-net/circular"
   },
   "require": {
-    "typo3/cms-core": "^8.5",
-    "jweiland/telephonedirectory": "^1.0",
+    "typo3/cms-core": "^8.5 || ^9.5",
+    "jweiland/telephonedirectory": "^2.0",
     "directmailteam/direct-mail": "^5.2"
   },
   "require-dev": {
