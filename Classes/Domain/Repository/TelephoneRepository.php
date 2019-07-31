@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Domain\Repository;
 
 /*
@@ -14,44 +15,57 @@ namespace JWeiland\Circular\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * Class TelephoneRepository
- *
- * @package JWeiland\Circular\Domain\Repository
+ * Repository to show a list of telephones
  */
 class TelephoneRepository extends Repository
 {
     /**
-     * get recipients from given pid
+     * Get recipients from given pid
      * get only records where email-address is set
      * and there is exactly ONE entry for ONE email
      *
-     * @param integer $pid
+     * @param int $pid
      * @return QueryResultInterface
      */
-    public function getRecipientsFromPid($pid)
+    public function getRecipientsFromPid(int $pid): QueryResultInterface
     {
+        /** @var Query $query */
         $query = $this->createQuery();
 
-        return $query->statement(
-            '
-			SELECT *, COUNT(*) AS amount
-			FROM tx_telephonedirectory_domain_model_employee
-			WHERE email <> ?
-			AND pid = ?' . BackendUtility::BEenableFields(
-                'tx_telephonedirectory_domain_model_employee'
-            ) . BackendUtility::deleteClause('tx_telephonedirectory_domain_model_employee') . '
-			GROUP BY email
-			HAVING amount = 1
-		',
-            array(
-                '',
-                $pid
+        $queryBuilder = $this->getConnectionPool()->getQueryBuilderForTable('tx_telephonedirectory_domain_model_employee');
+        $queryBuilder
+            ->selectLiteral('*, COUNT(*) AS amount')
+            ->from('tx_telephonedirectory_domain_model_employee')
+            ->where(
+                $queryBuilder->expr()->neq(
+                    'email',
+                    $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)
+                ),
+                $queryBuilder->expr()->eq(
+                    'pid',
+                    $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)
+                )
             )
-        )->execute();
+            ->groupBy('email')
+            ->add('having', 'amount = 1');
+
+        return $query->statement($queryBuilder)->execute();
+    }
+
+    /**
+     * Get TYPO3s Connection Pool
+     *
+     * @return ConnectionPool
+     */
+    protected function getConnectionPool()
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Domain\Repository;
 
 /*
@@ -14,11 +15,11 @@ namespace JWeiland\Circular\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /**
- * Class DepartmentRepository
- *
- * @package JWeiland\Circular\Domain\Repository
+ * Repository to show a list of departments
  */
-class DepartmentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class DepartmentRepository extends Repository
 {
 }

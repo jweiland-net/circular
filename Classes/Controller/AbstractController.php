@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Controller;
 
 /*
@@ -24,50 +25,37 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
- * @package circular
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * Abstract controller with useful methods for extended controller classes
  */
 class AbstractController extends ActionController
 {
     /**
-     * circularRepository
-     *
      * @var CircularRepository
      */
     protected $circularRepository;
+
     /**
-     * telephoneDirectory Repository
-     *
      * @var TelephoneRepository
      */
     protected $telephoneRepository;
 
     /**
-     * sys_dmail Repository
-     *
      * @var SysDmailRepository
      */
     protected $sysDmailRepository;
 
     /**
-     * department Repository
-     *
      * @var DepartmentRepository
      */
     protected $departmentRepository;
 
     /**
-     * ExtConf
-     *
      * @var ExtConf
      */
     protected $extConf;
 
     /**
-     * inject circularRepository
-     *
      * @param CircularRepository $circularRepository
-     * @return void
      */
     public function injectCircularRepository(CircularRepository $circularRepository)
     {
@@ -75,10 +63,7 @@ class AbstractController extends ActionController
     }
 
     /**
-     * inject telephoneRepository
-     *
      * @param TelephoneRepository $telephoneRepository
-     * @return void
      */
     public function injectTelephoneRepository(TelephoneRepository $telephoneRepository)
     {
@@ -86,10 +71,7 @@ class AbstractController extends ActionController
     }
 
     /**
-     * inject sysDmailRepository
-     *
      * @param SysDmailRepository $sysDmailRepository
-     * @return void
      */
     public function injectSysDmailRepository(SysDmailRepository $sysDmailRepository)
     {
@@ -97,10 +79,7 @@ class AbstractController extends ActionController
     }
 
     /**
-     * inject departmentRepository
-     *
      * @param DepartmentRepository $departmentRepository
-     * @return void
      */
     public function injectDepartmentRepository(DepartmentRepository $departmentRepository)
     {
@@ -108,10 +87,7 @@ class AbstractController extends ActionController
     }
 
     /**
-     * inject extConf
-     *
      * @param ExtConf $extConf
-     * @return void
      */
     public function injectExtConf(ExtConf $extConf)
     {
@@ -119,13 +95,13 @@ class AbstractController extends ActionController
     }
 
     /**
-     * build serialized query info
+     * Build serialized query info
      *
      * @param string $table
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $telephones
      * @return string serialized query info for sysDmail
      */
-    public function buildQueryInfo($table, QueryResultInterface $telephones)
+    public function buildQueryInfo($table, QueryResultInterface $telephones): string
     {
         $listOfUids = [];
         /** @var \JWeiland\Circular\Domain\Model\Telephone $telephone */
@@ -142,11 +118,11 @@ class AbstractController extends ActionController
     }
 
     /**
-     * get categories for select box in search form
+     * Get categories for select box in search form
      *
      * @return array
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         $categories = [];
         $entries = ['circular', 'aboutDisposal', 'vacancy'];

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Domain\Repository;
 
 /*
@@ -17,9 +18,7 @@ namespace JWeiland\Circular\Domain\Repository;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * Class SysDmailRepository
- *
- * @package JWeiland\Circular\Domain\Repository
+ * Repository to add/update sys_dmail records
  */
 class SysDmailRepository extends Repository
 {

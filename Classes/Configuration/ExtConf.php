@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Configuration;
 
 /*
@@ -17,72 +18,59 @@ namespace JWeiland\Circular\Configuration;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /**
- * Class ExtConf
- *
- * @package JWeiland\Circular\Configuration
+ * This class will streamline the values from extension manager configuration
  */
 class ExtConf implements SingletonInterface
 {
     /**
-     * from_email
-     *
      * @var string
      */
     protected $fromEmail = '';
 
     /**
-     * from_name
-     *
      * @var string
      */
     protected $fromName = '';
 
     /**
-     * replytoEmail
-     *
      * @var string
      */
     protected $replytoEmail = '';
 
     /**
-     * replytoName
-     *
      * @var string
      */
     protected $replytoName = '';
 
     /**
-     * organisation
-     *
      * @var string
      */
     protected $organisation;
 
-    /**
-     * constructor of this class
-     * This method reads the global configuration and calls the setter methods
-     */
     public function __construct()
     {
-        // get global configuration
-        $extConf = \unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['circular']);
-        if (\is_array($extConf) && \count($extConf)) {
-            // call setter method foreach configuration entry
-            foreach ($extConf as $key => $value) {
-                $methodName = 'set' . \ucfirst($key);
-                if (\method_exists($this, $methodName)) {
-                    $this->$methodName($value);
+        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['circular'])) {
+            // get global configuration
+            $extConf = \unserialize(
+                $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['circular'],
+                ['allowed_classes' => false]
+            );
+            if (\is_array($extConf) && \count($extConf)) {
+                // call setter method foreach configuration entry
+                foreach ($extConf as $key => $value) {
+                    $methodName = 'set' . \ucfirst($key);
+                    if (\method_exists($this, $methodName)) {
+                        $this->$methodName($value);
+                    }
                 }
             }
         }
     }
 
     /**
-     * getter for from_email
-     *
      * @return string
      */
-    public function getFromEmail()
+    public function getFromEmail(): string
     {
         if (empty($this->fromEmail)) {
             return $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'];
@@ -92,22 +80,17 @@ class ExtConf implements SingletonInterface
     }
 
     /**
-     * setter for from_email
-     *
      * @param string $fromEmail
-     * @return void
      */
-    public function setFromEmail($fromEmail)
+    public function setFromEmail(string $fromEmail)
     {
-        $this->fromEmail = (string)$fromEmail;
+        $this->fromEmail = $fromEmail;
     }
 
     /**
-     * getter for fromName
-     *
      * @return string
      */
-    public function getFromName()
+    public function getFromName(): string
     {
         if (empty($this->fromName)) {
             return $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'];
@@ -117,76 +100,58 @@ class ExtConf implements SingletonInterface
     }
 
     /**
-     * setter for from_name
-     *
      * @param string $fromName
-     * @return void
      */
-    public function setFromName($fromName)
+    public function setFromName(string $fromName)
     {
-        $this->fromName = (string)$fromName;
+        $this->fromName = $fromName;
     }
 
     /**
-     * getter for replyto_email
-     *
      * @return string
      */
-    public function getReplytoEmail()
+    public function getReplytoEmail(): string
     {
         return $this->replytoEmail;
     }
 
     /**
-     * setter for replytoEmail
-     *
      * @param string $replytoEmail
-     * @return void
      */
-    public function setReplytoEmail($replytoEmail)
+    public function setReplytoEmail(string $replytoEmail)
     {
-        $this->replytoEmail = (string)$replytoEmail;
+        $this->replytoEmail = $replytoEmail;
     }
 
     /**
-     * getter for replytoName
-     *
      * @return string
      */
-    public function getReplytoName()
+    public function getReplytoName(): string
     {
         return $this->replytoName;
     }
 
     /**
-     * setter for replyto_name
-     *
      * @param string $replytoName
-     * @return void
      */
-    public function setReplytoName($replytoName)
+    public function setReplytoName(string $replytoName)
     {
-        $this->replytoName = (string)$replytoName;
+        $this->replytoName = $replytoName;
     }
 
     /**
-     * getter for organisation
-     *
      * @return string
      */
-    public function getOrganisation()
+    public function getOrganisation(): string
     {
         return $this->organisation;
     }
 
     /**
-     * setter for organisation
-     *
      * @param string $organisation
-     * @return void
      */
-    public function setOrganisation($organisation)
+    public function setOrganisation(string $organisation)
     {
-        $this->organisation = (string)$organisation;
+        $this->organisation = $organisation;
     }
 }

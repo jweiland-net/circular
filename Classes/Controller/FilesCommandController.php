@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace JWeiland\Circular\Controller;
 
 /*
@@ -15,34 +16,29 @@ namespace JWeiland\Circular\Controller;
  */
 
 use JWeiland\Circular\Domain\Repository\CircularRepository;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
 /**
- * Class FilesCommandController
- *
- * @package JWeiland\Circular\Controller
+ * Controller to move file record to its new location.
+ * SF: I remember that we had a special files-extension earlier.
  */
-class FilesCommandController extends CommandController
+class FilesCommandController extends Command
 {
     /**
-     * circularRepository
-     *
      * @var CircularRepository
      */
     protected $circularRepository;
+
     /**
-     * a collection of sourcefiles which does not exists anymore
-     *
      * @var array
      */
     protected $nonExistingFiles = [];
 
     /**
-     * inject circularRepository
-     *
      * @param CircularRepository $circularRepository
-     * @return void
      */
     public function injectCircularRepository(CircularRepository $circularRepository)
     {
@@ -52,57 +48,50 @@ class FilesCommandController extends CommandController
     /**
      * Move all circular files from uploads/tx_files to uploads/tx_circular
      * ./cli_dispatch.phpsh extbase files:migrate
-     *
-     * @return void
      */
-    public function migrateCommand()
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->outputLine('Command to migrate circular files to their new location');
-        if ($this->environmentCheck()) {
+        $output->writeln('Command to migrate circular files to their new location');
+        if ($this->environmentCheck($output)) {
             $circulars = $this->circularRepository->getCirculars();
-            $i = 0;
             foreach ($circulars as $circular) {
                 if (\trim($circular['files']) !== '') {
                     $files = GeneralUtility::trimExplode(',', $circular['files'], true);
                     foreach ($files as $file) {
                         $sourceFile = PATH_site . 'uploads/tx_files/' . $file;
                         $targetFile = PATH_site . 'uploads/tx_circular/' . $file;
-                        $this->moveFile($sourceFile, $targetFile);
-                        $i++;
-                        if ($i === $this->output->getMaximumLineLength()) {
-                            $this->output(\PHP_EOL);
-                            $i = 0;
-                        }
+                        $this->moveFile($sourceFile, $targetFile, $output);
                     }
                 }
             }
-            $this->outputLine();
-            $this->outputLine('List of non existing files:');
+            $output->writeln('');
+            $output->writeln('List of non existing files:');
             foreach ($this->nonExistingFiles as $file) {
-                $this->outputLine('- ' . $file);
+                $output->writeln('- ' . $file);
             }
-            $this->outputLine();
-            $this->outputLine('Migration has been finished');
+            $output->writeln('');
+            $output->writeln('Migration has been finished');
         }
     }
 
     /**
      * Checks if environment is OK
      *
+     * @param OutputInterface $output
      * @return bool
      */
-    protected function environmentCheck()
+    protected function environmentCheck(OutputInterface $output): bool
     {
         if (\is_dir(PATH_site . 'uploads/tx_files') && \is_dir(PATH_site . 'uploads/tx_circular')) {
-            $this->outputLine('Environment seems to be OK.');
-            $this->outputLine('. => File was moved to its new location.');
-            $this->outputLine('A => Target file already exists.');
-            $this->outputLine('S => Sourcefile does not exists. Seems to be already migrated.');
-            $this->outputLine('Starting migration:');
+            $output->writeln('Environment seems to be OK.');
+            $output->writeln('. => File was moved to its new location.');
+            $output->writeln('A => Target file already exists.');
+            $output->writeln('S => Sourcefile does not exists. Seems to be already migrated.');
+            $output->writeln('Starting migration:');
 
             return true;
         }
-        $this->outputLine(
+        $output->writeln(
             'ERROR: Environment is not OK. Either uploads/tx_files or uploads/tx_circular is not a directory'
         );
 
@@ -110,22 +99,23 @@ class FilesCommandController extends CommandController
     }
 
     /**
-     * move file to a new location
+     * Move file to a new location
      *
      * @param string $sourceFile
      * @param string $targetFile
+     * @param OutputInterface $output
      */
-    protected function moveFile($sourceFile, $targetFile)
+    protected function moveFile(string $sourceFile, string $targetFile, OutputInterface $output)
     {
         if (\is_file($sourceFile)) {
             if (\is_file($targetFile)) {
-                $this->output('A');
+                $output->writeln('A');
             } else {
                 \rename($sourceFile, $targetFile);
-                $this->output('.');
+                $output->writeln('.');
             }
         } else {
-            $this->output('S');
+            $output->writeln('S');
             $this->nonExistingFiles[] = $sourceFile;
         }
     }
