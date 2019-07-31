@@ -167,30 +167,6 @@ class CircularTest extends UnitTestCase
     }
 
     /**
-     * @return array
-     */
-    public function dataProviderForSetDateOfCircular()
-    {
-        $arguments = array();
-        $arguments['set DateOfCircular with Null'] = array(null);
-        $arguments['set DateOfCircular with Integer'] = array(1234567890);
-        $arguments['set DateOfCircular with Integer as String'] = array('1234567890');
-        $arguments['set DateOfCircular with String'] = array('Hi all together');
-        return $arguments;
-    }
-
-    /**
-     * @test
-     *
-     * @dataProvider dataProviderForSetDateOfCircular
-     * @expectedException \Exception
-     */
-    public function setDateOfCircularWithInvalidValuesResultsInException($argument)
-    {
-        $this->subject->setDateOfCircular($argument);
-    }
-
-    /**
      * @test
      */
     public function getDepartmentInitiallyReturnsNull()
@@ -296,10 +272,10 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function getFilesInitiallyReturnsEmptyString()
+    public function getFilesInitiallyReturnsEmptyArray()
     {
         $this->assertSame(
-            '',
+            [],
             $this->subject->getFiles()
         );
     }
@@ -309,10 +285,10 @@ class CircularTest extends UnitTestCase
      */
     public function setFilesSetsFiles()
     {
-        $this->subject->setFiles('foo bar');
+        $this->subject->setFiles('foo, bar');
 
         $this->assertSame(
-            'foo bar',
+            ['foo', 'bar'],
             $this->subject->getFiles()
         );
     }
@@ -323,7 +299,10 @@ class CircularTest extends UnitTestCase
     public function setFilesWithIntegerResultsInString()
     {
         $this->subject->setFiles(123);
-        $this->assertSame('123', $this->subject->getFiles());
+        $this->assertSame(
+            ['123'],
+            $this->subject->getFiles()
+        );
     }
 
     /**
@@ -332,6 +311,9 @@ class CircularTest extends UnitTestCase
     public function setFilesWithBooleanResultsInString()
     {
         $this->subject->setFiles(true);
-        $this->assertSame('1', $this->subject->getFiles());
+        $this->assertSame(
+            ['1'],
+            $this->subject->getFiles()
+        );
     }
 }
