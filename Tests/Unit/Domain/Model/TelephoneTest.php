@@ -1,18 +1,13 @@
 <?php
-namespace JWeiland\Circular\Domain\Model;
 
 /*
- * This file is part of the circular project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/circular.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
+
+namespace JWeiland\Circular\Domain\Model;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 
@@ -41,7 +36,7 @@ class TelephoneTest extends UnitTestCase
      */
     public function getFirstNameInitiallyReturnsEmptyString()
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->subject->getFirstName()
         );
@@ -54,7 +49,7 @@ class TelephoneTest extends UnitTestCase
     {
         $this->subject->setFirstName('foo bar');
 
-        $this->assertSame(
+        self::assertSame(
             'foo bar',
             $this->subject->getFirstName()
         );
@@ -66,7 +61,7 @@ class TelephoneTest extends UnitTestCase
     public function setFirstNameWithIntegerResultsInString()
     {
         $this->subject->setFirstName(123);
-        $this->assertSame('123', $this->subject->getFirstName());
+        self::assertSame('123', $this->subject->getFirstName());
     }
 
     /**
@@ -75,7 +70,7 @@ class TelephoneTest extends UnitTestCase
     public function setFirstNameWithBooleanResultsInString()
     {
         $this->subject->setFirstName(true);
-        $this->assertSame('1', $this->subject->getFirstName());
+        self::assertSame('1', $this->subject->getFirstName());
     }
 
     /**
@@ -83,7 +78,7 @@ class TelephoneTest extends UnitTestCase
      */
     public function getLastNameInitiallyReturnsEmptyString()
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->subject->getLastName()
         );
@@ -96,7 +91,7 @@ class TelephoneTest extends UnitTestCase
     {
         $this->subject->setLastName('foo bar');
 
-        $this->assertSame(
+        self::assertSame(
             'foo bar',
             $this->subject->getLastName()
         );
@@ -108,7 +103,7 @@ class TelephoneTest extends UnitTestCase
     public function setLastNameWithIntegerResultsInString()
     {
         $this->subject->setLastName(123);
-        $this->assertSame('123', $this->subject->getLastName());
+        self::assertSame('123', $this->subject->getLastName());
     }
 
     /**
@@ -117,7 +112,7 @@ class TelephoneTest extends UnitTestCase
     public function setLastNameWithBooleanResultsInString()
     {
         $this->subject->setLastName(true);
-        $this->assertSame('1', $this->subject->getLastName());
+        self::assertSame('1', $this->subject->getLastName());
     }
 
     /**
@@ -125,7 +120,7 @@ class TelephoneTest extends UnitTestCase
      */
     public function getEmailInitiallyReturnsEmptyString()
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->subject->getEmail()
         );
@@ -138,7 +133,7 @@ class TelephoneTest extends UnitTestCase
     {
         $this->subject->setEmail('foo bar');
 
-        $this->assertSame(
+        self::assertSame(
             'foo bar',
             $this->subject->getEmail()
         );
@@ -150,7 +145,7 @@ class TelephoneTest extends UnitTestCase
     public function setEmailWithIntegerResultsInString()
     {
         $this->subject->setEmail(123);
-        $this->assertSame('123', $this->subject->getEmail());
+        self::assertSame('123', $this->subject->getEmail());
     }
 
     /**
@@ -159,6 +154,6 @@ class TelephoneTest extends UnitTestCase
     public function setEmailWithBooleanResultsInString()
     {
         $this->subject->setEmail(true);
-        $this->assertSame('1', $this->subject->getEmail());
+        self::assertSame('1', $this->subject->getEmail());
     }
 }

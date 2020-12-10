@@ -1,19 +1,15 @@
 <?php
-declare(strict_types = 1);
-namespace JWeiland\Circular\Controller;
+
+declare(strict_types=1);
 
 /*
- * This file is part of the circular project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/circular.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
+
+namespace JWeiland\Circular\Controller;
 
 use JWeiland\Circular\Configuration\ExtConf;
 use JWeiland\Circular\Domain\Repository\CircularRepository;
@@ -54,43 +50,17 @@ class AbstractController extends ActionController
      */
     protected $extConf;
 
-    /**
-     * @param CircularRepository $circularRepository
-     */
-    public function injectCircularRepository(CircularRepository $circularRepository)
-    {
+    public function __construct(
+        CircularRepository $circularRepository,
+        TelephoneRepository $telephoneRepository,
+        SysDmailRepository $sysDmailRepository,
+        DepartmentRepository $departmentRepository,
+        ExtConf $extConf
+    ) {
         $this->circularRepository = $circularRepository;
-    }
-
-    /**
-     * @param TelephoneRepository $telephoneRepository
-     */
-    public function injectTelephoneRepository(TelephoneRepository $telephoneRepository)
-    {
         $this->telephoneRepository = $telephoneRepository;
-    }
-
-    /**
-     * @param SysDmailRepository $sysDmailRepository
-     */
-    public function injectSysDmailRepository(SysDmailRepository $sysDmailRepository)
-    {
         $this->sysDmailRepository = $sysDmailRepository;
-    }
-
-    /**
-     * @param DepartmentRepository $departmentRepository
-     */
-    public function injectDepartmentRepository(DepartmentRepository $departmentRepository)
-    {
         $this->departmentRepository = $departmentRepository;
-    }
-
-    /**
-     * @param ExtConf $extConf
-     */
-    public function injectExtConf(ExtConf $extConf)
-    {
         $this->extConf = $extConf;
     }
 
@@ -101,7 +71,7 @@ class AbstractController extends ActionController
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $telephones
      * @return string serialized query info for sysDmail
      */
-    public function buildQueryInfo($table, QueryResultInterface $telephones): string
+    public function buildQueryInfo(string $table, QueryResultInterface $telephones): string
     {
         $listOfUids = [];
         /** @var \JWeiland\Circular\Domain\Model\Telephone $telephone */

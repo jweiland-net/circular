@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * This file is part of the package jweiland/circular.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
@@ -10,7 +18,6 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'dividers2tabs' => true,
         'default_sortby' => 'ORDER BY crdate DESC',
         'versioningWS' => 2,
         'versioning_followPages' => true,
@@ -25,37 +32,41 @@ return [
             'endtime' => 'endtime'
         ],
         'searchFields' => 'number,title',
-        'iconfile' => 'EXT:circular/Resources/Public/Icons/tx_circular_domain_model_circular.gif'
+        'typeicon_classes' => [
+            'default' => 'ext-circular-circular'
+        ]
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, number, title, category, date_of_circular, department, file_name, files'
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, number, title, category, date_of_circular, department, files'
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, number, title, category, date_of_circular, department, file_name, files,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime']
+        '1' => ['showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, number, title, category, date_of_circular, department, files,--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,starttime, endtime']
     ],
     'palettes' => [
         '1' => ['showitem' => '']
     ],
     'columns' => [
         'sys_language_uid' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => [
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0]
                 ]
             ]
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'items' => [
                     ['', 0]
                 ],
@@ -69,7 +80,7 @@ return [
             ]
         ],
         't3ver_label' => [
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.versionLabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -77,21 +88,22 @@ return [
             ]
         ],
         'hidden' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check'
             ]
         ],
         'starttime' => [
-            'exclude' => 1,
+            'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
                 'type' => 'input',
                 'size' => 13,
                 'max' => 20,
                 'eval' => 'datetime',
+                'renderType' => 'inputDateTime',
                 'checkbox' => 0,
                 'default' => 0,
                 'range' => [
@@ -100,14 +112,15 @@ return [
             ]
         ],
         'endtime' => [
-            'exclude' => 1,
+            'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
                 'type' => 'input',
                 'size' => 13,
                 'max' => 20,
                 'eval' => 'datetime',
+                'renderType' => 'inputDateTime',
                 'checkbox' => 0,
                 'default' => 0,
                 'range' => [
@@ -116,7 +129,6 @@ return [
             ]
         ],
         'number' => [
-            'exclude' => 1,
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.number',
             'config' => [
                 'type' => 'input',
@@ -125,19 +137,19 @@ return [
             ]
         ],
         'title' => [
-            'exclude' => 1,
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim'
+                'eval' => 'trim,required'
             ]
         ],
         'category' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.category',
             'config' => [
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_circular_domain_model_category',
                 'size' => 1,
                 'items' => [
@@ -147,14 +159,14 @@ return [
             ]
         ],
         'date_of_circular' => [
-            'exclude' => 1,
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.date_of_circular',
             'config' => [
                 'type' => 'input',
                 'size' => 7,
-                'eval' => 'date',
+                'eval' => 'date,required',
+                'renderType' => 'inputDateTime',
                 'checkbox' => 1,
-                'default' => time()
+                'default' => time(),
             ]
         ],
         'send' => [
@@ -163,7 +175,7 @@ return [
             ]
         ],
         'department' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.department',
             'config' => [
                 'type' => 'group',
@@ -195,28 +207,17 @@ return [
                 ]
             ]
         ],
-        'file_name' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.file_name',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim'
-            ]
-        ],
         'files' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.files',
-            'config' => [
-                'type' => 'group',
-                'internal_type' => 'file',
-                'allowed' => 'pdf',
-                'max_size' => 16384,
-                'uploadfolder' => 'uploads/tx_circular',
-                'size' => 5,
-                'minitems' => 0,
-                'maxitems' => 1
-            ]
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'files',
+                [
+                    'maxitems' => 1,
+                    'minitems' => 0,
+                ],
+                'pdf'
+            )
         ]
     ]
 ];

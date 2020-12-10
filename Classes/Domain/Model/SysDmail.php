@@ -1,19 +1,15 @@
 <?php
-declare(strict_types = 1);
-namespace JWeiland\Circular\Domain\Model;
+
+declare(strict_types=1);
 
 /*
- * This file is part of the circular project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/circular.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
+
+namespace JWeiland\Circular\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
@@ -180,10 +176,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $type
+     * @return SysDmail
      */
-    public function setType(int $type)
+    public function setType(int $type): SysDmail
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -196,10 +194,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $page
+     * @return SysDmail
      */
-    public function setPage(int $page)
+    public function setPage(int $page): SysDmail
     {
         $this->page = $page;
+        return $this;
     }
 
     /**
@@ -212,10 +212,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $subject
+     * @return SysDmail
      */
-    public function setSubject(string $subject)
+    public function setSubject(string $subject): SysDmail
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
@@ -228,10 +230,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $fromEmail
+     * @return SysDmail
      */
-    public function setFromEmail(string $fromEmail)
+    public function setFromEmail(string $fromEmail): SysDmail
     {
         $this->fromEmail = $fromEmail;
+        return $this;
     }
 
     /**
@@ -244,10 +248,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $fromName
+     * @return SysDmail
      */
-    public function setFromName(string $fromName)
+    public function setFromName(string $fromName): SysDmail
     {
         $this->fromName = $fromName;
+        return $this;
     }
 
     /**
@@ -260,11 +266,13 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $replytoEmail
+     * @return SysDmail
      */
-    public function setReplytoEmail(string $replytoEmail)
+    public function setReplytoEmail(string $replytoEmail): SysDmail
     {
         $this->replytoEmail = $replytoEmail;
         $this->returnPath = $replytoEmail;
+        return $this;
     }
 
     /**
@@ -277,10 +285,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $replytoName
+     * @return SysDmail
      */
-    public function setReplytoName(string $replytoName)
+    public function setReplytoName(string $replytoName): SysDmail
     {
         $this->replytoName = $replytoName;
+        return $this;
     }
 
     /**
@@ -293,10 +303,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $organisation
+     * @return SysDmail
      */
-    public function setOrganisation(string $organisation)
+    public function setOrganisation(string $organisation): SysDmail
     {
         $this->organisation = $organisation;
+        return $this;
     }
 
     /**
@@ -309,10 +321,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $priority
+     * @return SysDmail
      */
-    public function setPriority(int $priority)
+    public function setPriority(int $priority): SysDmail
     {
         $this->priority = $priority;
+        return $this;
     }
 
     /**
@@ -325,10 +339,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $encoding
+     * @return SysDmail
      */
-    public function setEncoding(string $encoding)
+    public function setEncoding(string $encoding): SysDmail
     {
         $this->encoding = $encoding;
+        return $this;
     }
 
     /**
@@ -341,10 +357,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $charset
+     * @return SysDmail
      */
-    public function setCharset(string $charset)
+    public function setCharset(string $charset): SysDmail
     {
         $this->charset = $charset;
+        return $this;
     }
 
     /**
@@ -357,10 +375,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $sendOptions
+     * @return SysDmail
      */
-    public function setSendOptions(int $sendOptions)
+    public function setSendOptions(int $sendOptions): SysDmail
     {
         $this->sendOptions = $sendOptions;
+        return $this;
     }
 
     /**
@@ -373,10 +393,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $includeMedia
+     * @return SysDmail
      */
-    public function setIncludeMedia(int $includeMedia)
+    public function setIncludeMedia(int $includeMedia): SysDmail
     {
         $this->includeMedia = $includeMedia;
+        return $this;
     }
 
     /**
@@ -389,10 +411,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $flowedFormat
+     * @return SysDmail
      */
-    public function setFlowedFormat(int $flowedFormat)
+    public function setFlowedFormat(int $flowedFormat): SysDmail
     {
         $this->flowedFormat = $flowedFormat;
+        return $this;
     }
 
     /**
@@ -405,10 +429,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $htmlparams
+     * @return SysDmail
      */
-    public function setHtmlparams(string $htmlparams)
+    public function setHtmlparams(string $htmlparams): SysDmail
     {
         $this->htmlparams = $htmlparams;
+        return $this;
     }
 
     /**
@@ -421,10 +447,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $plainparams
+     * @return SysDmail
      */
-    public function setPlainparams(string $plainparams)
+    public function setPlainparams(string $plainparams): SysDmail
     {
         $this->plainparams = $plainparams;
+        return $this;
     }
 
     /**
@@ -437,10 +465,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param bool $issent
+     * @return SysDmail
      */
-    public function setIssent(bool $issent)
+    public function setIssent(bool $issent): SysDmail
     {
         $this->issent = $issent;
+        return $this;
     }
 
     /**
@@ -453,10 +483,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $renderedsize
+     * @return SysDmail
      */
-    public function setRenderedsize(int $renderedsize)
+    public function setRenderedsize(int $renderedsize): SysDmail
     {
         $this->renderedsize = $renderedsize;
+        return $this;
     }
 
     /**
@@ -469,11 +501,13 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $mailcontent
+     * @return SysDmail
      */
-    public function setMailcontent(string $mailcontent)
+    public function setMailcontent(string $mailcontent): SysDmail
     {
         $this->mailcontent = $mailcontent;
         $this->renderedsize = strlen($mailcontent);
+        return $this;
     }
 
     /**
@@ -486,10 +520,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $scheduled
+     * @return SysDmail
      */
-    public function setScheduled(int $scheduled)
+    public function setScheduled(int $scheduled): SysDmail
     {
         $this->scheduled = $scheduled;
+        return $this;
     }
 
     /**
@@ -502,10 +538,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $queryInfo
+     * @return SysDmail
      */
-    public function setQueryInfo(string $queryInfo)
+    public function setQueryInfo(string $queryInfo): SysDmail
     {
         $this->queryInfo = $queryInfo;
+        return $this;
     }
 
     /**
@@ -518,10 +556,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $scheduledBegin
+     * @return SysDmail
      */
-    public function setScheduledBegin(int $scheduledBegin)
+    public function setScheduledBegin(int $scheduledBegin): SysDmail
     {
         $this->scheduledBegin = $scheduledBegin;
+        return $this;
     }
 
     /**
@@ -534,10 +574,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param int $scheduledEnd
+     * @return SysDmail
      */
-    public function setScheduledEnd(int $scheduledEnd)
+    public function setScheduledEnd(int $scheduledEnd): SysDmail
     {
         $this->scheduledEnd = $scheduledEnd;
+        return $this;
     }
 
     /**
@@ -550,10 +592,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $returnPath
+     * @return SysDmail
      */
-    public function setReturnPath(string $returnPath)
+    public function setReturnPath(string $returnPath): SysDmail
     {
         $this->returnPath = $returnPath;
+        return $this;
     }
 
     /**
@@ -566,10 +610,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param bool $useDomain
+     * @return SysDmail
      */
-    public function setUseDomain(bool $useDomain)
+    public function setUseDomain(bool $useDomain): SysDmail
     {
         $this->useDomain = $useDomain;
+        return $this;
     }
 
     /**
@@ -582,10 +628,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param bool $useRdct
+     * @return SysDmail
      */
-    public function setUseRdct(bool $useRdct)
+    public function setUseRdct(bool $useRdct): SysDmail
     {
         $this->useRdct = $useRdct;
+        return $this;
     }
 
     /**
@@ -598,10 +646,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $longLinkRdctUrl
+     * @return SysDmail
      */
-    public function setLongLinkRdctUrl(string $longLinkRdctUrl)
+    public function setLongLinkRdctUrl(string $longLinkRdctUrl): SysDmail
     {
         $this->longLinkRdctUrl = $longLinkRdctUrl;
+        return $this;
     }
 
     /**
@@ -614,10 +664,12 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param bool $longLinkMode
+     * @return SysDmail
      */
-    public function setLongLinkMode(bool $longLinkMode)
+    public function setLongLinkMode(bool $longLinkMode): SysDmail
     {
         $this->longLinkMode = $longLinkMode;
+        return $this;
     }
 
     /**
@@ -630,9 +682,11 @@ class SysDmail extends AbstractEntity
 
     /**
      * @param string $authcodeFieldlist
+     * @return SysDmail
      */
-    public function setAuthcodeFieldlist(string $authcodeFieldlist)
+    public function setAuthcodeFieldlist(string $authcodeFieldlist): SysDmail
     {
         $this->authcodeFieldlist = $authcodeFieldlist;
+        return $this;
     }
 }

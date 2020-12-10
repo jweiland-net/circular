@@ -1,0 +1,33 @@
+config.tx_extbase {
+  persistence {
+    classes {
+      JWeiland\Circular\Domain\Model\SysDmail {
+        newRecordStoragePid = 0
+        mapping {
+          tableName = sys_dmail
+          columns {
+            # there is no TCA for mailcontent in direct_mail configured, so content for this field was not saved
+            mailcontent {
+              config {
+                type = passthrough
+              }
+            }
+
+            # there is no TCA for query_info in direct_mail configured, so content for this field was not saved
+            query_info {
+              config {
+                type = passthrough
+              }
+            }
+          }
+        }
+      }
+
+      JWeiland\Circular\Domain\Model\Telephone {
+        mapping {
+          tableName = tx_telephonedirectory_domain_model_employee
+        }
+      }
+    }
+  }
+}

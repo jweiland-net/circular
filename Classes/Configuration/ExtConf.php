@@ -1,21 +1,19 @@
 <?php
-declare(strict_types = 1);
-namespace JWeiland\Circular\Configuration;
+
+declare(strict_types=1);
 
 /*
- * This file is part of the circular project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/circular.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
 
+namespace JWeiland\Circular\Configuration;
+
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class will streamline the values from extension manager configuration
@@ -49,19 +47,14 @@ class ExtConf implements SingletonInterface
 
     public function __construct()
     {
-        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['circular'])) {
-            // get global configuration
-            $extConf = \unserialize(
-                $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['circular'],
-                ['allowed_classes' => false]
-            );
-            if (\is_array($extConf) && \count($extConf)) {
-                // call setter method foreach configuration entry
-                foreach ($extConf as $key => $value) {
-                    $methodName = 'set' . \ucfirst($key);
-                    if (\method_exists($this, $methodName)) {
-                        $this->$methodName($value);
-                    }
+        // get global configuration
+        $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('circular');
+        if (is_array($extConf) && count($extConf)) {
+            // call setter method foreach configuration entry
+            foreach ($extConf as $key => $value) {
+                $methodName = 'set' . ucfirst($key);
+                if (method_exists($this, $methodName)) {
+                    $this->$methodName((string)$value);
                 }
             }
         }
@@ -81,10 +74,12 @@ class ExtConf implements SingletonInterface
 
     /**
      * @param string $fromEmail
+     * @return ExtConf
      */
     public function setFromEmail(string $fromEmail)
     {
         $this->fromEmail = $fromEmail;
+        return $this;
     }
 
     /**
@@ -101,10 +96,12 @@ class ExtConf implements SingletonInterface
 
     /**
      * @param string $fromName
+     * @return ExtConf
      */
     public function setFromName(string $fromName)
     {
         $this->fromName = $fromName;
+        return $this;
     }
 
     /**
@@ -117,10 +114,12 @@ class ExtConf implements SingletonInterface
 
     /**
      * @param string $replytoEmail
+     * @return ExtConf
      */
     public function setReplytoEmail(string $replytoEmail)
     {
         $this->replytoEmail = $replytoEmail;
+        return $this;
     }
 
     /**
@@ -133,10 +132,12 @@ class ExtConf implements SingletonInterface
 
     /**
      * @param string $replytoName
+     * @return ExtConf
      */
-    public function setReplytoName(string $replytoName)
+    public function setReplytoName(string $replytoName): ExtConf
     {
         $this->replytoName = $replytoName;
+        return $this;
     }
 
     /**
@@ -149,9 +150,11 @@ class ExtConf implements SingletonInterface
 
     /**
      * @param string $organisation
+     * @return ExtConf
      */
     public function setOrganisation(string $organisation)
     {
         $this->organisation = $organisation;
+        return $this;
     }
 }

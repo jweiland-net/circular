@@ -1,19 +1,15 @@
 <?php
-declare(strict_types = 1);
-namespace JWeiland\Circular\Controller;
+
+declare(strict_types=1);
 
 /*
- * This file is part of the circular project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/circular.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
+
+namespace JWeiland\Circular\Controller;
 
 use DirectMailTeam\DirectMail\DirectMailUtility;
 use JWeiland\Circular\Domain\Model\Circular;
@@ -29,7 +25,7 @@ class CircularController extends AbstractController
     /**
      * Action list
      */
-    public function listAction()
+    public function listAction(): void
     {
         $circulars = $this->circularRepository->findBySend(0);
         $this->view->assign('circulars', $circulars);
@@ -42,7 +38,7 @@ class CircularController extends AbstractController
      *
      * @param Circular $circular
      */
-    public function showAction(Circular $circular)
+    public function showAction(Circular $circular): void
     {
         $this->view->assign('circular', $circular);
     }
@@ -55,10 +51,10 @@ class CircularController extends AbstractController
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      */
-    public function prepareAction(array $circulars = [])
+    public function prepareAction(array $circulars = []): void
     {
         // get recipients from telephone directory
-        $recipients = $this->telephoneRepository->getRecipientsFromPid($this->settings['pidOfTelephoneDirectory']);
+        $recipients = $this->telephoneRepository->getRecipientsFromPid((int)$this->settings['pidOfTelephoneDirectory']);
         // query info is a serialized value for recipients in sys_dmail-table
         $queryInfo = $this->buildQueryInfo('tx_telephonedirectory_domain_model_employee', $recipients);
         // loop through circulars and create a sys_dmail-record
@@ -73,26 +69,27 @@ class CircularController extends AbstractController
             //$this->circularRepository->update($circular);
             /** @var SysDmail $sysDmail */
             $sysDmail = $this->objectManager->get(SysDmail::class);
-            $sysDmail->setSubject($circular->getTitle());
-            $sysDmail->setFromEmail($this->extConf->getFromEmail());
-            $sysDmail->setFromName($this->extConf->getFromName());
-            $sysDmail->setReplytoEmail($this->extConf->getReplytoEmail());
-            $sysDmail->setReplytoName($this->extConf->getReplytoName());
-            $sysDmail->setOrganisation($this->extConf->getOrganisation());
-            $sysDmail->setMailcontent(
-                \base64_encode(
-                    \serialize(
-                        [
-                            'html' => [
-                                'content' => $this->getMailContent($circular)
+            $sysDmail
+                ->setSubject($circular->getTitle())
+                ->setFromEmail($this->extConf->getFromEmail())
+                ->setFromName($this->extConf->getFromName())
+                ->setReplytoEmail($this->extConf->getReplytoEmail())
+                ->setReplytoName($this->extConf->getReplytoName())
+                ->setOrganisation($this->extConf->getOrganisation())
+                ->setMailcontent(
+                    \base64_encode(
+                        \serialize(
+                            [
+                                'html' => [
+                                    'content' => $this->getMailContent($circular)
+                                ]
                             ]
-                        ]
+                        )
                     )
                 )
-            );
-            $sysDmail->setQueryInfo($queryInfo);
-            $sysDmail->setScheduled(\time()); // can not be 0 and must be less than time() when scheduler was invoked
-            $sysDmail->setLongLinkRdctUrl(DirectMailUtility::getUrlBase(true));
+                ->setQueryInfo($queryInfo)
+                ->setScheduled(\time()) // can not be 0 and must be less than time() when scheduler was invoked
+                ->setLongLinkRdctUrl(DirectMailUtility::getUrlBase(1));
             $this->sysDmailRepository->add($sysDmail);
         }
         $this->redirect('list');

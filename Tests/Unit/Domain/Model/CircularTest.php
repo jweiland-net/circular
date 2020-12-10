@@ -1,20 +1,17 @@
 <?php
-namespace JWeiland\Circular\Domain\Model;
 
 /*
- * This file is part of the circular project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/circular.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
 
+namespace JWeiland\Circular\Domain\Model;
+
 use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Test case.
@@ -41,7 +38,7 @@ class CircularTest extends UnitTestCase
      */
     public function getNumberInitiallyReturnsEmptyString()
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->subject->getNumber()
         );
@@ -54,7 +51,7 @@ class CircularTest extends UnitTestCase
     {
         $this->subject->setNumber('foo bar');
 
-        $this->assertSame(
+        self::assertSame(
             'foo bar',
             $this->subject->getNumber()
         );
@@ -66,7 +63,7 @@ class CircularTest extends UnitTestCase
     public function setNumberWithIntegerResultsInString()
     {
         $this->subject->setNumber(123);
-        $this->assertSame('123', $this->subject->getNumber());
+        self::assertSame('123', $this->subject->getNumber());
     }
 
     /**
@@ -75,7 +72,7 @@ class CircularTest extends UnitTestCase
     public function setNumberWithBooleanResultsInString()
     {
         $this->subject->setNumber(true);
-        $this->assertSame('1', $this->subject->getNumber());
+        self::assertSame('1', $this->subject->getNumber());
     }
 
     /**
@@ -83,7 +80,7 @@ class CircularTest extends UnitTestCase
      */
     public function getTitleInitiallyReturnsEmptyString()
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->subject->getTitle()
         );
@@ -96,7 +93,7 @@ class CircularTest extends UnitTestCase
     {
         $this->subject->setTitle('foo bar');
 
-        $this->assertSame(
+        self::assertSame(
             'foo bar',
             $this->subject->getTitle()
         );
@@ -108,7 +105,7 @@ class CircularTest extends UnitTestCase
     public function setTitleWithIntegerResultsInString()
     {
         $this->subject->setTitle(123);
-        $this->assertSame('123', $this->subject->getTitle());
+        self::assertSame('123', $this->subject->getTitle());
     }
 
     /**
@@ -117,15 +114,7 @@ class CircularTest extends UnitTestCase
     public function setTitleWithBooleanResultsInString()
     {
         $this->subject->setTitle(true);
-        $this->assertSame('1', $this->subject->getTitle());
-    }
-
-    /**
-     * @test
-     */
-    public function getCategoryInitiallyReturnsNull()
-    {
-        $this->assertNull($this->subject->getCategory());
+        self::assertSame('1', $this->subject->getTitle());
     }
 
     /**
@@ -136,19 +125,9 @@ class CircularTest extends UnitTestCase
         $instance = new Category();
         $this->subject->setCategory($instance);
 
-        $this->assertSame(
+        self::assertSame(
             $instance,
             $this->subject->getCategory()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getDateOfCircularInitiallyReturnsNull()
-    {
-        $this->assertNull(
-            $this->subject->getDateOfCircular()
         );
     }
 
@@ -160,18 +139,10 @@ class CircularTest extends UnitTestCase
         $date = new \DateTime();
         $this->subject->setDateOfCircular($date);
 
-        $this->assertSame(
+        self::assertSame(
             $date,
             $this->subject->getDateOfCircular()
         );
-    }
-
-    /**
-     * @test
-     */
-    public function getDepartmentInitiallyReturnsNull()
-    {
-        $this->assertNull($this->subject->getDepartment());
     }
 
     /**
@@ -182,7 +153,7 @@ class CircularTest extends UnitTestCase
         $instance = new Department();
         $this->subject->setDepartment($instance);
 
-        $this->assertSame(
+        self::assertSame(
             $instance,
             $this->subject->getDepartment()
         );
@@ -193,7 +164,7 @@ class CircularTest extends UnitTestCase
      */
     public function getSendInitiallyReturnsFalse()
     {
-        $this->assertFalse(
+        self::assertFalse(
             $this->subject->getSend()
         );
     }
@@ -204,7 +175,7 @@ class CircularTest extends UnitTestCase
     public function setSendSetsSend()
     {
         $this->subject->setSend(true);
-        $this->assertTrue(
+        self::assertTrue(
             $this->subject->getSend()
         );
     }
@@ -215,7 +186,7 @@ class CircularTest extends UnitTestCase
     public function setSendWithStringReturnsTrue()
     {
         $this->subject->setSend('foo bar');
-        $this->assertTrue($this->subject->getSend());
+        self::assertTrue($this->subject->getSend());
     }
 
     /**
@@ -224,59 +195,17 @@ class CircularTest extends UnitTestCase
     public function setSendWithZeroReturnsFalse()
     {
         $this->subject->setSend(0);
-        $this->assertFalse($this->subject->getSend());
+        self::assertFalse($this->subject->getSend());
     }
 
     /**
      * @test
      */
-    public function getFileNameInitiallyReturnsEmptyString()
+    public function getFilesInitiallyReturnsEmptyObjectStorage()
     {
-        $this->assertSame(
-            '',
-            $this->subject->getFileName()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function setFileNameSetsFileName()
-    {
-        $this->subject->setFileName('foo bar');
-
-        $this->assertSame(
-            'foo bar',
-            $this->subject->getFileName()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function setFileNameWithIntegerResultsInString()
-    {
-        $this->subject->setFileName(123);
-        $this->assertSame('123', $this->subject->getFileName());
-    }
-
-    /**
-     * @test
-     */
-    public function setFileNameWithBooleanResultsInString()
-    {
-        $this->subject->setFileName(true);
-        $this->assertSame('1', $this->subject->getFileName());
-    }
-
-    /**
-     * @test
-     */
-    public function getFilesInitiallyReturnsEmptyArray()
-    {
-        $this->assertSame(
+        self::assertSame(
             [],
-            $this->subject->getFiles()
+            $this->subject->getFiles()->toArray()
         );
     }
 
@@ -285,34 +214,18 @@ class CircularTest extends UnitTestCase
      */
     public function setFilesSetsFiles()
     {
-        $this->subject->setFiles('foo, bar');
+        $file1 = new FileReference();
+        $file1->setPid(1);
+        $file2 = new FileReference();
+        $file2->setPid(2);
 
-        $this->assertSame(
-            ['foo', 'bar'],
-            $this->subject->getFiles()
-        );
-    }
+        $objectStorage = new ObjectStorage();
+        $objectStorage->attach($file1);
+        $objectStorage->attach($file2);
+        $this->subject->setFiles($objectStorage);
 
-    /**
-     * @test
-     */
-    public function setFilesWithIntegerResultsInString()
-    {
-        $this->subject->setFiles(123);
-        $this->assertSame(
-            ['123'],
-            $this->subject->getFiles()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function setFilesWithBooleanResultsInString()
-    {
-        $this->subject->setFiles(true);
-        $this->assertSame(
-            ['1'],
+        self::assertSame(
+            $objectStorage,
             $this->subject->getFiles()
         );
     }

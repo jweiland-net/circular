@@ -15,9 +15,9 @@
 				<f:then>
 					<f:for each="{circular.files}" as="file">
 						<dd>
-							<a href="/uploads/tx_circular/{file}" target="_blank" title="{circular.title}">
+							<a href="{file.originalResource.publicUrl}" title="{file.originalResource.name}">
 								<span aria-hidden="true" class="icon-download"></span>
-								{circular.fileName}
+								{file.originalResource.name}
 							</a>
 						</dd>
 					</f:for>

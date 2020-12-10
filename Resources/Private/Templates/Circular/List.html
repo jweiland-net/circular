@@ -3,37 +3,40 @@
 <f:section name="main">
 	<div class="grid_8">
 		<div class="gridright">
-			<f:for each="{circulars}" as="circular">
-				<div>
-					<h3 class="noborder nomargin">{circular.title}</h3>
-					<div class="informations">
-						{circular.category.title}<br/>
-						{circular.number}
-						<f:translate key="of"/>
-						{circular.dateOfCircular -> f:format.date(format: 'd.m.Y')},
-						<br/>{circular.department.title}
-					</div>
-					<dl class="extdl">
-						<f:if condition="{circular.files}">
-							<f:then>
-								<f:for each="{circular.files}" as="file">
-									<dd>
-										<a href="/uploads/tx_circular/{file}" target="_blank" title="{circular.title}">
-											<span aria-hidden="true" class="icon-download"></span>
-											{circular.fileName}
-										</a>
+			<f:widget.paginate objects="{circulars}" as="paginatedCirculars"
+												 configuration="{itemsPerPage: settings.pageBrowser.itemsPerPage, insertAbove: settings.pageBrowser.insertAbove, insertBelow: settings.pageBrowser.insertBelow, maximumNumberOfLinks: settings.pageBrowser.maximumNumberOfLinks}">
+				<f:for each="{paginatedCirculars}" as="circular">
+					<div>
+						<h3 class="noborder nomargin">{circular.title}</h3>
+						<div class="informations">
+							{circular.category.title}<br/>
+							{circular.number}
+							<f:translate key="of"/>
+							{circular.dateOfCircular -> f:format.date(format: 'd.m.Y')},
+							<br/>{circular.department.title}
+						</div>
+						<dl class="extdl">
+							<f:if condition="{circular.files}">
+								<f:then>
+									<f:for each="{circular.files}" as="file">
+										<dd>
+											<a href="{file.originalResource.publicUrl}" title="{file.originalResource.name}">
+												<span aria-hidden="true" class="icon-download"></span>
+												{file.originalResource.name}
+											</a>
+										</dd>
+									</f:for>
+								</f:then>
+								<f:else>
+									<dd class="showHint">
+										<f:translate key="hint"/>
 									</dd>
-								</f:for>
-							</f:then>
-							<f:else>
-								<dd class="showHint">
-									<f:translate key="hint"/>
-								</dd>
-							</f:else>
-						</f:if>
-					</dl>
-				</div>
-			</f:for>
+								</f:else>
+							</f:if>
+						</dl>
+					</div>
+				</f:for>
+			</f:widget.paginate>
 			<div id="dialogHint" title="{f:translate(key: 'hint')}">
 				<p>{settings.textForHint}</p>
 			</div>

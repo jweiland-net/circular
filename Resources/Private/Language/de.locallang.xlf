@@ -44,10 +44,6 @@
 				<source>Department</source>
 				<target>Dienststelle</target>
 			</trans-unit>
-			<trans-unit id="tx_circular_domain_model_circular.file_name">
-				<source>Filename</source>
-				<target>Dateiname</target>
-			</trans-unit>
 			<trans-unit id="tx_circular_domain_model_circular.files">
 				<source>File</source>
 				<target>Datei</target>

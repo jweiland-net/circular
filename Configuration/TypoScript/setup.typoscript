@@ -16,39 +16,17 @@ plugin.tx_circular {
 
   persistence {
     storagePid = {$plugin.tx_circular.persistence.storagePid}
-    classes {
-      JWeiland\Circular\Domain\Model\SysDmail {
-        newRecordStoragePid = 0
-        mapping {
-          tableName = sys_dmail
-          columns {
-            # there is no TCA for mailcontent in direct_mail configured, so content for this field was not saved
-            mailcontent {
-              config {
-                type = passthrough
-              }
-            }
-
-            # there is no TCA for query_info in direct_mail configured, so content for this field was not saved
-            query_info {
-              config {
-                type = passthrough
-              }
-            }
-          }
-        }
-      }
-
-      JWeiland\Circular\Domain\Model\Telephone {
-        mapping {
-          tableName = tx_telephonedirectory_domain_model_employee
-        }
-      }
-    }
   }
 
   settings {
     pidOfTelephoneDirectory = 0
+
+    pageBrowser {
+      itemsPerPage = {$plugin.tx_circular.settings.pageBrowser.itemsPerPage}
+      insertAbove = {$plugin.tx_circular.settings.pageBrowser.insertAbove}
+      insertBelow = {$plugin.tx_circular.settings.pageBrowser.insertBelow}
+      maximumNumberOfLinks = {$plugin.tx_circular.settings.pageBrowser.maximumNumberOfLinks}
+    }
   }
 }
 

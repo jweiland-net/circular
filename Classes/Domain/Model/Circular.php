@@ -1,22 +1,18 @@
 <?php
-declare(strict_types = 1);
-namespace JWeiland\Circular\Domain\Model;
+
+declare(strict_types=1);
 
 /*
- * This file is part of the circular project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/circular.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+namespace JWeiland\Circular\Domain\Model;
+
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Main domain model for circulars
@@ -25,7 +21,7 @@ class Circular extends AbstractEntity
 {
     /**
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $number = '';
 
@@ -46,7 +42,6 @@ class Circular extends AbstractEntity
 
     /**
      * @var \JWeiland\Circular\Domain\Model\Department
-     * @lazy
      */
     protected $department;
 
@@ -58,14 +53,14 @@ class Circular extends AbstractEntity
     protected $send = false;
 
     /**
-     * @var string
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
-    protected $fileName = '';
+    protected $files;
 
-    /**
-     * @var string
-     */
-    protected $files = '';
+    public function __construct()
+    {
+        $this->files = new ObjectStorage();
+    }
 
     /**
      * @return string
@@ -77,10 +72,12 @@ class Circular extends AbstractEntity
 
     /**
      * @param string $number
+     * @return Circular
      */
-    public function setNumber(string $number)
+    public function setNumber(string $number): Circular
     {
         $this->number = $number;
+        return $this;
     }
 
     /**
@@ -93,58 +90,66 @@ class Circular extends AbstractEntity
 
     /**
      * @param string $title
+     * @return Circular
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): Circular
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
      * @return Category
      */
-    public function getCategory()
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
     /**
      * @param Category $category
+     * @return Circular
      */
-    public function setCategory(Category $category)
+    public function setCategory(Category $category): Circular
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
      * @return \DateTime
      */
-    public function getDateOfCircular()
+    public function getDateOfCircular(): \DateTime
     {
         return $this->dateOfCircular;
     }
 
     /**
      * @param \DateTime $dateOfCircular
+     * @return Circular
      */
-    public function setDateOfCircular(\DateTime $dateOfCircular)
+    public function setDateOfCircular(\DateTime $dateOfCircular): Circular
     {
         $this->dateOfCircular = $dateOfCircular;
+        return $this;
     }
 
     /**
      * @return Department
      */
-    public function getDepartment()
+    public function getDepartment(): Department
     {
         return $this->department;
     }
 
     /**
      * @param Department $department
+     * @return Circular
      */
-    public function setDepartment(Department $department)
+    public function setDepartment(Department $department): Circular
     {
         $this->department = $department;
+        return $this;
     }
 
     /**
@@ -165,41 +170,29 @@ class Circular extends AbstractEntity
 
     /**
      * @param bool $send
+     * @return Circular
      */
-    public function setSend(bool $send)
+    public function setSend(bool $send): Circular
     {
         $this->send = $send;
+        return $this;
     }
 
     /**
-     * @return string
+     * @return ObjectStorage
      */
-    public function getFileName(): string
+    public function getFiles(): ObjectStorage
     {
-        return $this->fileName;
+        return $this->files;
     }
 
     /**
-     * @param string $fileName
+     * @param ObjectStorage $files
+     * @return Circular
      */
-    public function setFileName(string $fileName)
-    {
-        $this->fileName = $fileName;
-    }
-
-    /**
-     * @return array
-     */
-    public function getFiles(): array
-    {
-        return GeneralUtility::trimExplode(',', $this->files, true);
-    }
-
-    /**
-     * @param string $files
-     */
-    public function setFiles(string $files)
+    public function setFiles(ObjectStorage $files): Circular
     {
         $this->files = $files;
+        return $this;
     }
 }

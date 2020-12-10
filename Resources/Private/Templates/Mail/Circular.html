@@ -2,6 +2,10 @@
 <div>{circular.title}</div>
 <ul>
 	<f:for each="{circular.files}" as="file">
-		<li><a href="{baseUri}uploads/tx_circular/{file.file}" target="_blank">{file.title}</a></li>
+		<li>
+			<a href="{file.originalResource.publicUrl}" target="_blank" title="{file.originalResource.name}">
+			{file.originalResource.name}
+			</a>
+		</li>
 	</f:for>
 </ul>
