@@ -211,7 +211,8 @@ return [
                     'minitems' => 0,
                 ],
                 'pdf'
-            )
+            ),
+            'default' => ''
         ]
     ]
 ];
