@@ -95,6 +95,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface
         } catch (\Exception $e) {
             $customMessage .= PHP_EOL . $e->getMessage();
         }
+
         return empty($customMessage);
     }
 
@@ -161,7 +162,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface
         $fileadminDirectory = rtrim($GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'], '/') . '/';
         $i = 0;
 
-        $storageUid = (int)$this->storage->getUid();
+        $storageUid = $this->storage->getUid();
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
 
         foreach ($fieldItems as $item) {
@@ -206,11 +207,9 @@ class FilesUpdateWizard implements UpgradeWizardInterface
                 try {
                     // if the source file does not exist, we should just continue, but leave a message in the docs;
                     // ideally, the user would be informed after the update as well.
-                    /** @var File $file */
                     $file = $this->storage->getFile($this->targetPath . $item);
                     $fileUid = $file->getUid();
                 } catch (\InvalidArgumentException $e) {
-
                     // no file found, no reference can be set
                     $this->logger->notice(
                         'File ' . $this->sourcePath . $item . ' does not exist. Reference was not migrated.',
