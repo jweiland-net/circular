@@ -1,16 +1,5 @@
 <?php
 
-/*
- * This file is part of the package jweiland/circular.
- *
- * For the full copyright and license information, please read the
- * LICENSE file that was distributed with this source code.
- */
-
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
-
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular',
@@ -40,10 +29,20 @@ return [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, number, title, category, date_of_circular, department, files'
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, number, title, category, date_of_circular, department, files,--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,starttime, endtime']
+        '1' => [
+            'showitem' => '--palette--;;language, --palette--;;numberHidden, --palette--;;titleDate,
+            category, department, files,
+            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access, 
+            --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access;access'
+        ]
     ],
     'palettes' => [
-        '1' => ['showitem' => '']
+        'language' => ['showitem' => 'sys_language_uid, l10n_parent'],
+        'numberHidden' => ['showitem' => 'number, hidden'],
+        'titleDate' => ['showitem' => 'title, date_of_circular'],
+        'access' => [
+            'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
+        ],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -52,46 +51,72 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'foreign_table' => 'sys_language',
-                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'special' => 'languages',
                 'items' => [
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0]
-                ]
+                    [
+                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ],
+                ],
+                'default' => 0,
             ]
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'items' => [
-                    ['', 0]
-                ],
-                'foreign_table' => 'tx_circular_domain_model_circular',
-                'foreign_table_where' => 'AND tx_circular_domain_model_circular.pid=###CURRENT_PID### AND tx_circular_domain_model_circular.sys_language_uid IN (-1,0)'
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => 'tx_circular_domain_model_circular',
+                'size' => 1,
+                'maxitems' => 1,
+                'minitems' => 0,
+                'default' => 0,
             ]
         ],
-        'l10n_diffsource' => [
+        'l10n_source' => [
             'config' => [
                 'type' => 'passthrough'
             ]
         ],
-        't3ver_label' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.versionLabel',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max' => 255
-            ]
-        ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
             'config' => [
-                'type' => 'check'
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                        'invertStateDisplay' => true
+                    ]
+                ],
+            ]
+        ],
+        'cruser_id' => [
+            'label' => 'cruser_id',
+            'config' => [
+                'type' => 'passthrough'
+            ]
+        ],
+        'pid' => [
+            'label' => 'pid',
+            'config' => [
+                'type' => 'passthrough'
+            ]
+        ],
+        'crdate' => [
+            'label' => 'crdate',
+            'config' => [
+                'type' => 'passthrough',
+            ]
+        ],
+        'tstamp' => [
+            'label' => 'tstamp',
+            'config' => [
+                'type' => 'passthrough',
             ]
         ],
         'starttime' => [
@@ -100,13 +125,12 @@ return [
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
-                'size' => 16,
-                'eval' => 'int,datetime',
+                'eval' => 'datetime',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'endtime' => [
             'exclude' => true,
@@ -114,13 +138,12 @@ return [
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
-                'size' => 16,
-                'eval' => 'int,datetime',
+                'eval' => 'datetime',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'number' => [
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.number',
@@ -157,8 +180,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 7,
-                'eval' => 'date,required',
                 'renderType' => 'inputDateTime',
+                'eval' => 'date,required',
                 'checkbox' => 1,
                 'default' => time(),
             ]
