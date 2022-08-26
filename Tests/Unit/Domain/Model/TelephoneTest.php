@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the package jweiland/circular.
  *
@@ -21,12 +23,12 @@ class TelephoneTest extends UnitTestCase
      */
     protected $subject;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new Telephone();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->subject);
     }
@@ -34,7 +36,7 @@ class TelephoneTest extends UnitTestCase
     /**
      * @test
      */
-    public function getFirstNameInitiallyReturnsEmptyString()
+    public function getFirstNameInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
             '',
@@ -45,7 +47,7 @@ class TelephoneTest extends UnitTestCase
     /**
      * @test
      */
-    public function setFirstNameSetsFirstName()
+    public function setFirstNameSetsFirstName(): void
     {
         $this->subject->setFirstName('foo bar');
 
@@ -58,25 +60,7 @@ class TelephoneTest extends UnitTestCase
     /**
      * @test
      */
-    public function setFirstNameWithIntegerResultsInString()
-    {
-        $this->subject->setFirstName(123);
-        self::assertSame('123', $this->subject->getFirstName());
-    }
-
-    /**
-     * @test
-     */
-    public function setFirstNameWithBooleanResultsInString()
-    {
-        $this->subject->setFirstName(true);
-        self::assertSame('1', $this->subject->getFirstName());
-    }
-
-    /**
-     * @test
-     */
-    public function getLastNameInitiallyReturnsEmptyString()
+    public function getLastNameInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
             '',
@@ -87,7 +71,7 @@ class TelephoneTest extends UnitTestCase
     /**
      * @test
      */
-    public function setLastNameSetsLastName()
+    public function setLastNameSetsLastName(): void
     {
         $this->subject->setLastName('foo bar');
 
@@ -100,25 +84,7 @@ class TelephoneTest extends UnitTestCase
     /**
      * @test
      */
-    public function setLastNameWithIntegerResultsInString()
-    {
-        $this->subject->setLastName(123);
-        self::assertSame('123', $this->subject->getLastName());
-    }
-
-    /**
-     * @test
-     */
-    public function setLastNameWithBooleanResultsInString()
-    {
-        $this->subject->setLastName(true);
-        self::assertSame('1', $this->subject->getLastName());
-    }
-
-    /**
-     * @test
-     */
-    public function getEmailInitiallyReturnsEmptyString()
+    public function getEmailInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
             '',
@@ -129,7 +95,7 @@ class TelephoneTest extends UnitTestCase
     /**
      * @test
      */
-    public function setEmailSetsEmail()
+    public function setEmailSetsEmail(): void
     {
         $this->subject->setEmail('foo bar');
 
@@ -137,23 +103,5 @@ class TelephoneTest extends UnitTestCase
             'foo bar',
             $this->subject->getEmail()
         );
-    }
-
-    /**
-     * @test
-     */
-    public function setEmailWithIntegerResultsInString()
-    {
-        $this->subject->setEmail(123);
-        self::assertSame('123', $this->subject->getEmail());
-    }
-
-    /**
-     * @test
-     */
-    public function setEmailWithBooleanResultsInString()
-    {
-        $this->subject->setEmail(true);
-        self::assertSame('1', $this->subject->getEmail());
     }
 }

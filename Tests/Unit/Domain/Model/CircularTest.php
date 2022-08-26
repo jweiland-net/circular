@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the package jweiland/circular.
  *
@@ -23,12 +25,12 @@ class CircularTest extends UnitTestCase
      */
     protected $subject;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new Circular();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->subject);
     }
@@ -36,7 +38,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function getNumberInitiallyReturnsEmptyString()
+    public function getNumberInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
             '',
@@ -47,7 +49,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setNumberSetsNumber()
+    public function setNumberSetsNumber(): void
     {
         $this->subject->setNumber('foo bar');
 
@@ -60,25 +62,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setNumberWithIntegerResultsInString()
-    {
-        $this->subject->setNumber(123);
-        self::assertSame('123', $this->subject->getNumber());
-    }
-
-    /**
-     * @test
-     */
-    public function setNumberWithBooleanResultsInString()
-    {
-        $this->subject->setNumber(true);
-        self::assertSame('1', $this->subject->getNumber());
-    }
-
-    /**
-     * @test
-     */
-    public function getTitleInitiallyReturnsEmptyString()
+    public function getTitleInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
             '',
@@ -89,7 +73,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setTitleSetsTitle()
+    public function setTitleSetsTitle(): void
     {
         $this->subject->setTitle('foo bar');
 
@@ -102,25 +86,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setTitleWithIntegerResultsInString()
-    {
-        $this->subject->setTitle(123);
-        self::assertSame('123', $this->subject->getTitle());
-    }
-
-    /**
-     * @test
-     */
-    public function setTitleWithBooleanResultsInString()
-    {
-        $this->subject->setTitle(true);
-        self::assertSame('1', $this->subject->getTitle());
-    }
-
-    /**
-     * @test
-     */
-    public function setCategorySetsCategory()
+    public function setCategorySetsCategory(): void
     {
         $instance = new Category();
         $this->subject->setCategory($instance);
@@ -134,7 +100,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setDateOfCircularSetsDateOfCircular()
+    public function setDateOfCircularSetsDateOfCircular(): void
     {
         $date = new \DateTime();
         $this->subject->setDateOfCircular($date);
@@ -148,7 +114,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setDepartmentSetsDepartment()
+    public function setDepartmentSetsDepartment(): void
     {
         $instance = new Department();
         $this->subject->setDepartment($instance);
@@ -162,7 +128,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function getSendInitiallyReturnsFalse()
+    public function getSendInitiallyReturnsFalse(): void
     {
         self::assertFalse(
             $this->subject->getSend()
@@ -172,7 +138,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setSendSetsSend()
+    public function setSendSetsSend(): void
     {
         $this->subject->setSend(true);
         self::assertTrue(
@@ -183,25 +149,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setSendWithStringReturnsTrue()
-    {
-        $this->subject->setSend('foo bar');
-        self::assertTrue($this->subject->getSend());
-    }
-
-    /**
-     * @test
-     */
-    public function setSendWithZeroReturnsFalse()
-    {
-        $this->subject->setSend(0);
-        self::assertFalse($this->subject->getSend());
-    }
-
-    /**
-     * @test
-     */
-    public function getFilesInitiallyReturnsEmptyObjectStorage()
+    public function getFilesInitiallyReturnsEmptyObjectStorage(): void
     {
         self::assertSame(
             [],
@@ -212,7 +160,7 @@ class CircularTest extends UnitTestCase
     /**
      * @test
      */
-    public function setFilesSetsFiles()
+    public function setFilesSetsFiles(): void
     {
         $file1 = new FileReference();
         $file1->setPid(1);
