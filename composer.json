@@ -1,7 +1,7 @@
 {
 	"name": "jweiland/circular",
 	"type": "typo3-cms-extension",
-	"description": "Organize your single and recurring events",
+	"description": "Organize your circular records incl. PDF download",
 	"license": "GPL-2.0-or-later",
 	"keywords": ["typo3", "TYPO3 CMS", "circular", "circular"],
 	"homepage": "http://www.jweiland.net",
