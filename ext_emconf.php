@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = [
         'depends' => [
             'typo3' => '9.5.0-10.4.99',
             'direct_mail' => '5.2.0-7.99.99',
-            'telephonedirectory' => '2.0.0-3.99.99',
+            'telephonedirectory' => '3.0.0-4.99.99',
         ],
         'conflicts' => [
         ],

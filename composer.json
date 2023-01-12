@@ -19,7 +19,7 @@
 	},
 	"require": {
 		"typo3/cms-core": "^9.5 || ^10.4",
-		"jweiland/telephonedirectory": "^2.0 || ^3.0 || dev-master",
+		"jweiland/telephonedirectory": "^3.0 || ^4.0",
 		"directmailteam/direct-mail": ">= 5.2 < 8.0 || dev-develop"
 	},
 	"require-dev": {
