@@ -16,12 +16,12 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'jweiland.net',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
-    'version' => '3.0.2',
+    'version' => '3.1.0',
     'constraints' => [
         'depends' => [
             'typo3' => '9.5.0-10.4.99',
             'direct_mail' => '5.2.0-7.99.99',
-            'telephonedirectory' => '2.0.0-3.99.99',
+            'telephonedirectory' => '3.0.0-4.99.99',
         ],
         'conflicts' => [
         ],
