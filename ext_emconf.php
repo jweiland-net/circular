@@ -1,12 +1,5 @@
 <?php
 
-/*
- * This file is part of the package jweiland/circular.
- *
- * For the full copyright and license information, please read the
- * LICENSE file that was distributed with this source code.
- */
-
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Circular',
     'description' => 'circular',
@@ -19,9 +12,9 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '3.1.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '9.5.0-10.4.99',
+            'typo3' => '10.4.36-11.5.99',
             'direct_mail' => '5.2.0-7.99.99',
-            'telephonedirectory' => '3.0.0-4.99.99',
+            'telephonedirectory' => '3.0.0-0.0.0.',
         ],
         'conflicts' => [
         ],

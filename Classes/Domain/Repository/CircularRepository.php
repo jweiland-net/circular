@@ -26,14 +26,12 @@ class CircularRepository extends Repository
      * @var array
      */
     protected $defaultOrderings = [
-        'dateOfCircular' => QueryInterface::ORDER_DESCENDING
+        'dateOfCircular' => QueryInterface::ORDER_DESCENDING,
     ];
 
     /**
      * This method is needed by command controller to find
      * visible, hidden and deleted circulars
-     *
-     * @return array
      */
     public function getCirculars(): array
     {
@@ -48,11 +46,6 @@ class CircularRepository extends Repository
         return $query->statement($queryBuilder)->execute(true);
     }
 
-    /**
-     * Get TYPO3s Connection Pool
-     *
-     * @return ConnectionPool
-     */
     protected function getConnectionPool(): ConnectionPool
     {
         return GeneralUtility::makeInstance(ConnectionPool::class);

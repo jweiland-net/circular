@@ -23,9 +23,6 @@ plugin.tx_circular {
 
     pageBrowser {
       itemsPerPage = {$plugin.tx_circular.settings.pageBrowser.itemsPerPage}
-      insertAbove = {$plugin.tx_circular.settings.pageBrowser.insertAbove}
-      insertBelow = {$plugin.tx_circular.settings.pageBrowser.insertBelow}
-      maximumNumberOfLinks = {$plugin.tx_circular.settings.pageBrowser.maximumNumberOfLinks}
     }
   }
 }

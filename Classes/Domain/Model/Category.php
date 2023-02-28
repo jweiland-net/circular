@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace JWeiland\Circular\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  * Domain modelf for our own category table: tx_circular_domain_model_category
@@ -22,25 +23,17 @@ class Category extends AbstractEntity
 {
     /**
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * @Extbase\Validate("NotEmpty")
      */
     protected $title = '';
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Category
-     */
-    public function setTitle(string $title): Category
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-        return $this;
     }
 }

@@ -18,23 +18,20 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
-            'endtime' => 'endtime'
+            'endtime' => 'endtime',
         ],
         'searchFields' => 'number,title',
         'typeicon_classes' => [
-            'default' => 'ext-circular-circular'
-        ]
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, number, title, category, date_of_circular, department, files'
+            'default' => 'ext-circular-circular',
+        ],
     ],
     'types' => [
         '1' => [
             'showitem' => '--palette--;;language, --palette--;;numberHidden, --palette--;;titleDate,
             category, department, files,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access, 
-            --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access;access'
-        ]
+            --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access;access',
+        ],
     ],
     'palettes' => [
         'language' => ['showitem' => 'sys_language_uid, l10n_parent'],
@@ -56,11 +53,11 @@ return [
                     [
                         'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
                         -1,
-                        'flags-multiple'
+                        'flags-multiple',
                     ],
                 ],
                 'default' => 0,
-            ]
+            ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -73,12 +70,12 @@ return [
                 'maxitems' => 1,
                 'minitems' => 0,
                 'default' => 0,
-            ]
+            ],
         ],
         'l10n_source' => [
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'hidden' => [
             'exclude' => true,
@@ -90,34 +87,34 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
         'cruser_id' => [
             'label' => 'cruser_id',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'pid' => [
             'label' => 'pid',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'crdate' => [
             'label' => 'crdate',
             'config' => [
                 'type' => 'passthrough',
-            ]
+            ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
                 'type' => 'passthrough',
-            ]
+            ],
         ],
         'starttime' => [
             'exclude' => true,
@@ -150,16 +147,16 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required'
-            ]
+                'eval' => 'trim,required',
+            ],
         ],
         'title' => [
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required'
-            ]
+                'eval' => 'trim,required',
+            ],
         ],
         'category' => [
             'exclude' => true,
@@ -170,10 +167,10 @@ return [
                 'foreign_table' => 'tx_circular_domain_model_category',
                 'size' => 1,
                 'items' => [
-                    ['', '']
+                    ['', ''],
                 ],
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'date_of_circular' => [
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.date_of_circular',
@@ -184,12 +181,12 @@ return [
                 'eval' => 'date,required',
                 'checkbox' => 1,
                 'default' => time(),
-            ]
+            ],
         ],
         'send' => [
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'department' => [
             'exclude' => true,
@@ -210,19 +207,19 @@ return [
                         'params' => [
                             'table' => 'tx_circular_domain_model_department',
                             'pid' => '###CURRENT_PID###',
-                            'setValue' => 'set'
+                            'setValue' => 'set',
                         ],
                         'module' => [
-                            'name' => 'wizard_add'
-                        ]
+                            'name' => 'wizard_add',
+                        ],
                     ],
                     'suggest' => [
                         'type' => 'suggest',
                         'minimumCharacters' => 3,
-                        'searchWholePhrase' => true
-                    ]
-                ]
-            ]
+                        'searchWholePhrase' => true,
+                    ],
+                ],
+            ],
         ],
         'files' => [
             'exclude' => true,
@@ -235,7 +232,7 @@ return [
                 ],
                 'pdf'
             ),
-            'default' => ''
-        ]
-    ]
+            'default' => '',
+        ],
+    ],
 ];

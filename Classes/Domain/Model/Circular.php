@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -21,7 +22,7 @@ class Circular extends AbstractEntity
 {
     /**
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * @Extbase\Validate("NotEmpty")
      */
     protected $number = '';
 
@@ -62,137 +63,83 @@ class Circular extends AbstractEntity
         $this->files = new ObjectStorage();
     }
 
-    /**
-     * @return string
-     */
+    public function initializeObject(): void
+    {
+        $this->files = $this->files ?? new ObjectStorage();
+    }
+
     public function getNumber(): string
     {
         return $this->number;
     }
 
-    /**
-     * @param string $number
-     * @return Circular
-     */
-    public function setNumber(string $number): Circular
+    public function setNumber(string $number): void
     {
         $this->number = $number;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Circular
-     */
-    public function setTitle(string $title): Circular
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-        return $this;
     }
 
-    /**
-     * @return Category
-     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    /**
-     * @param Category $category
-     * @return Circular
-     */
-    public function setCategory(Category $category): Circular
+    public function setCategory(Category $category): void
     {
         $this->category = $category;
-        return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getDateOfCircular(): \DateTime
     {
         return $this->dateOfCircular;
     }
 
-    /**
-     * @param \DateTime $dateOfCircular
-     * @return Circular
-     */
-    public function setDateOfCircular(\DateTime $dateOfCircular): Circular
+    public function setDateOfCircular(\DateTime $dateOfCircular): void
     {
         $this->dateOfCircular = $dateOfCircular;
-        return $this;
     }
 
-    /**
-     * @return Department
-     */
     public function getDepartment(): Department
     {
         return $this->department;
     }
 
-    /**
-     * @param Department $department
-     * @return Circular
-     */
-    public function setDepartment(Department $department): Circular
+    public function setDepartment(Department $department): void
     {
         $this->department = $department;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getSend(): bool
     {
         return $this->send;
     }
 
-    /**
-     * @return bool
-     */
     public function isSend(): bool
     {
         return $this->getSend();
     }
 
-    /**
-     * @param bool $send
-     * @return Circular
-     */
-    public function setSend(bool $send): Circular
+    public function setSend(bool $send): void
     {
         $this->send = $send;
-        return $this;
     }
 
-    /**
-     * @return ObjectStorage
-     */
     public function getFiles(): ObjectStorage
     {
         return $this->files;
     }
 
-    /**
-     * @param ObjectStorage $files
-     * @return Circular
-     */
-    public function setFiles(ObjectStorage $files): Circular
+    public function setFiles(ObjectStorage $files): void
     {
         $this->files = $files;
-        return $this;
     }
 }

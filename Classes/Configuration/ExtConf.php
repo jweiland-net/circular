@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Configuration;
 
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -45,116 +47,78 @@ class ExtConf implements SingletonInterface
      */
     protected $organisation;
 
-    public function __construct()
+    public function __construct(ExtensionConfiguration $extensionConfiguration)
     {
-        // get global configuration
-        $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('circular');
-        if (is_array($extConf) && count($extConf)) {
-            // call setter method foreach configuration entry
-            foreach ($extConf as $key => $value) {
-                $methodName = 'set' . ucfirst($key);
-                if (method_exists($this, $methodName)) {
-                    $this->$methodName((string)$value);
+        try {
+            $extConf = $extensionConfiguration->get('circular');
+            if (is_array($extConf) && count($extConf)) {
+                // call setter method foreach configuration entry
+                foreach ($extConf as $key => $value) {
+                    $methodName = 'set' . ucfirst($key);
+                    if (method_exists($this, $methodName)) {
+                        $this->$methodName((string)$value);
+                    }
                 }
             }
+        } catch (ExtensionConfigurationExtensionNotConfiguredException | ExtensionConfigurationPathDoesNotExistException $e) {
         }
     }
 
-    /**
-     * @return string
-     */
     public function getFromEmail(): string
     {
-        if (empty($this->fromEmail)) {
+        if ($this->fromEmail === '') {
             return $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'];
         }
 
         return $this->fromEmail;
     }
 
-    /**
-     * @param string $fromEmail
-     * @return ExtConf
-     */
-    public function setFromEmail(string $fromEmail)
+    public function setFromEmail(string $fromEmail): void
     {
         $this->fromEmail = $fromEmail;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFromName(): string
     {
-        if (empty($this->fromName)) {
+        if ($this->fromName === '') {
             return $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'];
         }
 
         return $this->fromName;
     }
 
-    /**
-     * @param string $fromName
-     * @return ExtConf
-     */
-    public function setFromName(string $fromName)
+    public function setFromName(string $fromName): void
     {
         $this->fromName = $fromName;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getReplytoEmail(): string
     {
         return $this->replytoEmail;
     }
 
-    /**
-     * @param string $replytoEmail
-     * @return ExtConf
-     */
-    public function setReplytoEmail(string $replytoEmail)
+    public function setReplytoEmail(string $replytoEmail): void
     {
         $this->replytoEmail = $replytoEmail;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getReplytoName(): string
     {
         return $this->replytoName;
     }
 
-    /**
-     * @param string $replytoName
-     * @return ExtConf
-     */
-    public function setReplytoName(string $replytoName): ExtConf
+    public function setReplytoName(string $replytoName): void
     {
         $this->replytoName = $replytoName;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getOrganisation(): string
     {
         return $this->organisation;
     }
 
-    /**
-     * @param string $organisation
-     * @return ExtConf
-     */
-    public function setOrganisation(string $organisation)
+    public function setOrganisation(string $organisation): void
     {
         $this->organisation = $organisation;
-        return $this;
     }
 }

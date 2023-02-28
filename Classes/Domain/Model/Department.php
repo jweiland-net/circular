@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
@@ -24,21 +25,13 @@ class Department extends AbstractEntity
      */
     protected $title = '';
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Department
-     */
-    public function setTitle(string $title): Department
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-        return $this;
     }
 }
