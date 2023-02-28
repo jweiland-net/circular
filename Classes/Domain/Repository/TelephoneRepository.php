@@ -26,9 +26,6 @@ class TelephoneRepository extends Repository
      * Get recipients from given pid
      * get only records where email-address is set
      * and there is exactly ONE entry for ONE email
-     *
-     * @param int $pid
-     * @return QueryResultInterface
      */
     public function getRecipientsFromPid(int $pid): QueryResultInterface
     {
@@ -55,11 +52,6 @@ class TelephoneRepository extends Repository
         return $query->statement($queryBuilder)->execute();
     }
 
-    /**
-     * Get TYPO3s Connection Pool
-     *
-     * @return ConnectionPool
-     */
     protected function getConnectionPool(): ConnectionPool
     {
         return GeneralUtility::makeInstance(ConnectionPool::class);

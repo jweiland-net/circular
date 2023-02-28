@@ -33,57 +33,33 @@ class Telephone extends AbstractEntity
      */
     protected $email = '';
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @param string $firstName
-     * @return Telephone
-     */
-    public function setFirstName(string $firstName): Telephone
+    public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * @param string $lastName
-     * @return Telephone
-     */
-    public function setLastName(string $lastName): Telephone
+    public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     * @return Telephone
-     */
-    public function setEmail(string $email): Telephone
+    public function setEmail(string $email): void
     {
         $this->email = $email;
-        return $this;
     }
 }

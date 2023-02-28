@@ -12,27 +12,24 @@ declare(strict_types=1);
 namespace JWeiland\Circular\Updates;
 
 use Doctrine\DBAL\DBALException;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Expression\ExpressionBuilder;
-use TYPO3\CMS\Core\Log\Logger;
-use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
-class FilesUpdateWizard implements UpgradeWizardInterface
+class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * @var ResourceStorage
      */
     protected $storage;
-
-    /**
-     * @var Logger
-     */
-    protected $logger;
 
     /**
      * @var string
@@ -57,14 +54,6 @@ class FilesUpdateWizard implements UpgradeWizardInterface
      */
     protected $targetPath = '_migrated/circular/';
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
-    }
-
     public function getIdentifier(): string
     {
         return 'circularFiles';
@@ -88,6 +77,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface
             $storages = GeneralUtility::makeInstance(StorageRepository::class)->findAll();
             $this->storage = $storages[0];
 
+            $dbQueries = [];
             $records = $this->getRecordsFromTable($dbQueries);
             foreach ($records as $record) {
                 $this->migrateField($record, $customMessage, $dbQueries);
@@ -103,12 +93,9 @@ class FilesUpdateWizard implements UpgradeWizardInterface
      * Get records from table where the field to migrate is not empty (NOT NULL and != '')
      * and also not numeric (which means that it is migrated)
      *
-     * @param array $dbQueries
-     *
-     * @return array
      * @throws \RuntimeException
      */
-    protected function getRecordsFromTable(&$dbQueries)
+    protected function getRecordsFromTable(array &$dbQueries): array
     {
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
         $queryBuilder = $connectionPool->getQueryBuilderForTable($this->table);
@@ -122,7 +109,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface
                     $queryBuilder->expr()->isNotNull($this->fieldToMigrate),
                     $queryBuilder->expr()->neq(
                         $this->fieldToMigrate,
-                        $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)
+                        $queryBuilder->createNamedParameter('')
                     ),
                     $queryBuilder->expr()->comparison(
                         'CAST(CAST(' . $queryBuilder->quoteIdentifier($this->fieldToMigrate) . ' AS DECIMAL) AS CHAR)',
@@ -147,13 +134,9 @@ class FilesUpdateWizard implements UpgradeWizardInterface
     /**
      * Migrates a single field.
      *
-     * @param array $row
-     * @param string $customMessage
-     * @param array $dbQueries
-     *
      * @throws \Exception
      */
-    protected function migrateField($row, &$customMessage, &$dbQueries)
+    protected function migrateField(array $row, string &$customMessage, array &$dbQueries): void
     {
         $fieldItems = GeneralUtility::trimExplode(',', $row[$this->fieldToMigrate], true);
         if (empty($fieldItems) || is_numeric($row[$this->fieldToMigrate])) {
@@ -185,7 +168,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface
                 $existingFileRecord = $queryBuilder->select('uid')->from('sys_file')->where(
                     $queryBuilder->expr()->eq(
                         'sha1',
-                        $queryBuilder->createNamedParameter($fileSha1, \PDO::PARAM_STR)
+                        $queryBuilder->createNamedParameter($fileSha1)
                     ),
                     $queryBuilder->expr()->eq(
                         'storage',
@@ -242,7 +225,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface
                     'uid_local' => $fileUid,
                     'tablenames' => $this->table,
                     'crdate' => time(),
-                    'tstamp' => time()
+                    'tstamp' => time(),
                 ];
 
                 $queryBuilder = $connectionPool->getQueryBuilderForTable('sys_file_reference');
