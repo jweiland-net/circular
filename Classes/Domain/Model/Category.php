@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Domain\Model;
 
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * Domain modelf for our own category table: tx_circular_domain_model_category
