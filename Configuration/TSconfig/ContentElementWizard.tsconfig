@@ -1,7 +1,7 @@
 mod.wizards.newContentElement.wizardItems.plugins {
   elements {
     circular {
-      iconIdentifier = ext-circular-wizard-icon
+      iconIdentifier = ext-circular-circular
       title = LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.title
       description = LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.description
       tt_content_defValues {

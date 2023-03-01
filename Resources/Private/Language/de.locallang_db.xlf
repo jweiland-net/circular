@@ -8,6 +8,10 @@
 				<source>Circular</source>
 				<target>Rundschreiben</target>
 			</trans-unit>
+			<trans-unit id="plugin.circular.description">
+				<source>List and show circulars</source>
+				<target>Auflisten und Anzeigen von Rundschreiben</target>
+			</trans-unit>
 
 			<trans-unit id="tx_circular_domain_model_circular">
 				<source>Circulars</source>
