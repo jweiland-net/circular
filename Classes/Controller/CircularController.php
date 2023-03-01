@@ -11,18 +11,78 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Controller;
 
-use DirectMailTeam\DirectMail\DirectMailUtility;
+use JWeiland\Circular\Configuration\ExtConf;
 use JWeiland\Circular\Domain\Model\Circular;
 use JWeiland\Circular\Domain\Model\SysDmail;
+use JWeiland\Circular\Domain\Model\Telephone;
+use JWeiland\Circular\Domain\Repository\CircularRepository;
+use JWeiland\Circular\Domain\Repository\DepartmentRepository;
+use JWeiland\Circular\Domain\Repository\SysDmailRepository;
+use JWeiland\Circular\Domain\Repository\TelephoneRepository;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Main controller to list and show circulars
  */
-class CircularController extends AbstractController
+class CircularController extends ActionController
 {
+    /**
+     * @var CircularRepository
+     */
+    protected $circularRepository;
+
+    /**
+     * @var TelephoneRepository
+     */
+    protected $telephoneRepository;
+
+    /**
+     * @var SysDmailRepository
+     */
+    protected $sysDmailRepository;
+
+    /**
+     * @var DepartmentRepository
+     */
+    protected $departmentRepository;
+
+    /**
+     * @var ExtConf
+     */
+    protected $extConf;
+
+    public function injectCircularRepository(CircularRepository $circularRepository): void
+    {
+        $this->circularRepository = $circularRepository;
+    }
+
+    public function injectTelephoneRepository(TelephoneRepository $telephoneRepository): void
+    {
+        $this->telephoneRepository = $telephoneRepository;
+    }
+
+    public function injectSysDmailRepository(SysDmailRepository $sysDmailRepository): void
+    {
+        $this->sysDmailRepository = $sysDmailRepository;
+    }
+
+    public function injectDepartmentRepository(DepartmentRepository $departmentRepository): void
+    {
+        $this->departmentRepository = $departmentRepository;
+    }
+
+    public function injectExtConf(ExtConf $extConf): void
+    {
+        $this->extConf = $extConf;
+    }
+
     public function listAction(): void
     {
         $circulars = $this->circularRepository->findBySend(0);
@@ -52,33 +112,59 @@ class CircularController extends AbstractController
             }
 
             $sysDmail = GeneralUtility::makeInstance(SysDmail::class);
-            $sysDmail
-                ->setSubject($circular->getTitle())
-                ->setFromEmail($this->extConf->getFromEmail())
-                ->setFromName($this->extConf->getFromName())
-                ->setReplytoEmail($this->extConf->getReplytoEmail())
-                ->setReplytoName($this->extConf->getReplytoName())
-                ->setOrganisation($this->extConf->getOrganisation())
-                ->setMailcontent(
-                    \base64_encode(
-                        \serialize(
-                            [
-                                'html' => [
-                                    'content' => $this->getMailContent($circular),
-                                ],
+            $sysDmail->setSubject($circular->getTitle());
+            $sysDmail->setFromEmail($this->extConf->getFromEmail());
+            $sysDmail->setFromName($this->extConf->getFromName());
+            $sysDmail->setReplytoEmail($this->extConf->getReplytoEmail());
+            $sysDmail->setReplytoName($this->extConf->getReplytoName());
+            $sysDmail->setOrganisation($this->extConf->getOrganisation());
+            $sysDmail->setMailcontent(
+                \base64_encode(
+                    \serialize(
+                        [
+                            'html' => [
+                                'content' => $this->getMailContent($circular),
                             ],
-                        )
+                        ],
                     )
                 )
-                ->setQueryInfo($queryInfo)
-                ->setScheduled(\time()) // can not be 0 and must be less than time() when scheduler was invoked
-                ->setLongLinkRdctUrl(DirectMailUtility::getUrlBase(1));
+            );
+            $sysDmail->setQueryInfo($queryInfo);
+            $sysDmail->setScheduled(\time()); // can not be 0 and must be less than time() when scheduler was invoked
+            $sysDmail->setLongLinkRdctUrl($this->getUrlBase(1));
             $this->sysDmailRepository->add($sysDmail);
         }
+
         $this->redirect('list');
     }
 
-    public function getMailContent(Circular $circular): string
+    /**
+     * SF: As getUrlBase of direct_mail package was moved as protected method into DmailController
+     * we can not call it anymore.
+     * That's why I have copy&pasted that method into our own CircularController now.
+     *
+     * @param int $pageId
+     * @return string
+     * @throws SiteNotFoundException
+     */
+    protected function getUrlBase(int $pageId): string
+    {
+        if ($pageId > 0) {
+            $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
+            if (!empty($siteFinder->getAllSites())) {
+                $site = $siteFinder->getSiteByPageId($pageId);
+                $base = $site->getBase();
+
+                return sprintf('%s://%s', $base->getScheme(), $base->getHost());
+            }
+
+            return ''; // No site found in root line of pageId
+        }
+
+        return ''; // No valid pageId
+    }
+
+    protected function getMailContent(Circular $circular): string
     {
         $baseUri = $this->getControllerContext()->getRequest()->getBaseUri();
         $baseUriForFe = \substr($baseUri, 0, -6);
@@ -93,5 +179,46 @@ class CircularController extends AbstractController
         $view->assign('baseUri', $baseUriForFe);
 
         return $view->render();
+    }
+
+    /**
+     * Build serialized query info
+     *
+     * @param QueryResultInterface|Telephone[] $telephones
+     * @return string serialized query info for sysDmail
+     */
+    protected function buildQueryInfo(string $table, QueryResultInterface $telephones): string
+    {
+        $listOfUids = [];
+        foreach ($telephones as $telephone) {
+            $listOfUids[] = $telephone->getUid();
+        }
+
+        $queryInfo = [
+            'id_lists' => [
+                $table => $listOfUids,
+            ],
+        ];
+
+        return \serialize($queryInfo);
+    }
+
+    /**
+     * Get categories for select box in search form
+     */
+    protected function getCategories(): array
+    {
+        $categories = [];
+        foreach (['circular', 'aboutDisposal', 'vacancy'] as $entry) {
+            $category = new \stdClass();
+            $category->key = $entry;
+            $category->value = LocalizationUtility::translate(
+                'tx_circular_domain_model_circular.category.' . $entry,
+                'circular'
+            );
+            $categories[] = $category;
+        }
+
+        return $categories;
     }
 }
