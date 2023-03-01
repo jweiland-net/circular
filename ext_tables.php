@@ -4,18 +4,13 @@ if (!defined('TYPO3_MODE')) {
 }
 
 call_user_func(static function () {
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'JWeiland.circular',
-        'Circular',
-        'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.title'
-    );
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        'JWeiland.circular',
+        'Circular',
         'web',     // Make module a submodule of 'web'
-        'circular',    // Submodule key
-        '',                        // Position
+        'circular', // Submodule key
+        '',               // Position
         [
-            'Circular' => 'list, show, prepare',
+            \JWeiland\Circular\Controller\MaintenanceController::class => 'list, show, delete, prepare',
         ],
         [
             'access' => 'user,group',
@@ -24,16 +19,6 @@ call_user_func(static function () {
         ]
     );
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('circular', 'Configuration/TypoScript', 'Circular');
-    $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['circular_circular'] = 'pi_flexform';
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-        'circular_circular',
-        'FILE:EXT:circular/Configuration/FlexForms/Circular.xml'
-    );
-
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_circular_domain_model_circular');
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_circular_domain_model_department');
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_circular_domain_model_category');
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
         'tx_circular_domain_model_circular',
         'EXT:circular/Resources/Private/Language/locallang_csh_tx_circular_domain_model_circular.xlf'

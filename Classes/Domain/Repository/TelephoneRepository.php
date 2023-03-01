@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Domain\Repository;
 
+use JWeiland\Telephonedirectory\Domain\Model\Employee;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
@@ -23,9 +24,10 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 class TelephoneRepository extends Repository
 {
     /**
-     * Get recipients from given pid
-     * get only records where email-address is set
-     * and there is exactly ONE entry for ONE email
+     * Get recipients from given PID where email is NOT empty.
+     * The ResultSet is grouped by email
+     *
+     * @return QueryResultInterface|Employee[]
      */
     public function getRecipientsFromPid(int $pid): QueryResultInterface
     {
@@ -34,20 +36,19 @@ class TelephoneRepository extends Repository
 
         $queryBuilder = $this->getConnectionPool()->getQueryBuilderForTable('tx_telephonedirectory_domain_model_employee');
         $queryBuilder
-            ->selectLiteral('*, COUNT(*) AS amount')
+            ->select('*')
             ->from('tx_telephonedirectory_domain_model_employee')
             ->where(
                 $queryBuilder->expr()->neq(
                     'email',
-                    $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)
+                    $queryBuilder->createNamedParameter('')
                 ),
                 $queryBuilder->expr()->eq(
                     'pid',
                     $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)
                 )
             )
-            ->groupBy('email')
-            ->add('having', 'amount = 1');
+            ->groupBy('email');
 
         return $query->statement($queryBuilder)->execute();
     }

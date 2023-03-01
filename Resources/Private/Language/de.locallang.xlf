@@ -3,7 +3,6 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular">
 		<header/>
 		<body>
-
 			<trans-unit id="tx_circular_domain_model_circular">
 				<source>Circulars</source>
 				<target>Rundschreiben</target>
@@ -84,6 +83,22 @@
 				<target>vom</target>
 			</trans-unit>
 
+			<trans-unit id="pageBrowser.first">
+				<source>First</source>
+				<target>Erste</target>
+			</trans-unit>
+			<trans-unit id="pageBrowser.previous">
+				<source>Previous</source>
+				<target>Vorherige</target>
+			</trans-unit>
+			<trans-unit id="pageBrowser.next">
+				<source>Next</source>
+				<target>Nächste</target>
+			</trans-unit>
+			<trans-unit id="pageBrowser.last">
+				<source>Last</source>
+				<target>Letzte</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -37,3 +37,25 @@ Download and install `circular` with the extension manager module.
 1) Include the static TypoScript of the extension.
 2) Create a circular records on a sysfolder.
 3) Assign plugin "Circular" on a page and select at least the sysfolder as startingpoint.
+
+### FAQ
+
+#### I get an error while invoking mailer engine
+
+Error:
+
+```
+DirectMailTeam\DirectMail\Dmailer::ensureCorrectEncoding(): Argument #1 ($inputString) must be of type string, null given
+```
+
+`circular` creates recipient records from employee records of `telephonedirectory`.
+As `direct_mail` needs a `name` column defined here:
+
+```
+return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['defaultRecipFields']
+```
+
+but `telephonedirectory` does not have such a column, that error message appears.
+
+We can't change that configuration, as that may break your existing recipient configuration
+for `tt_address`, `fe_users` and others.

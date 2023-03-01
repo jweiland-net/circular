@@ -8,8 +8,7 @@ return [
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'default_sortby' => 'ORDER BY crdate DESC',
-        'versioningWS' => 2,
-        'versioning_followPages' => true,
+        'versioningWS' => true,
         'origUid' => 't3_origuid',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
@@ -199,25 +198,20 @@ return [
                 'size' => 1,
                 'minitems' => 0,
                 'maxitems' => 1,
-                'wizards' => [
-                    'add' => [
-                        'type' => 'script',
-                        'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:be_users.usergroup_add_title',
-                        'icon' => 'add.gif',
-                        'params' => [
+                'fieldControl' => [
+                    'addRecord' => [
+                        'disabled' => false,
+                        'options' => [
+                            'title' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:be_users.usergroup_add_title',
                             'table' => 'tx_circular_domain_model_department',
                             'pid' => '###CURRENT_PID###',
                             'setValue' => 'set',
                         ],
-                        'module' => [
-                            'name' => 'wizard_add',
-                        ],
                     ],
-                    'suggest' => [
-                        'type' => 'suggest',
-                        'minimumCharacters' => 3,
-                        'searchWholePhrase' => true,
-                    ],
+                ],
+                'suggestOptions' => [
+                    'minimumCharacters' => 3,
+                    'searchWholePhrase' => true,
                 ],
             ],
         ],

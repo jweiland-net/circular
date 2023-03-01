@@ -5,19 +5,24 @@ if (!defined('TYPO3_MODE')) {
 
 call_user_func(static function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'JWeiland.circular',
+        'Circular',
         'Circular',
         [
-            'Circular' => 'list, show',
+            \JWeiland\Circular\Controller\CircularController::class => 'list, show',
         ],
         // non-cacheable actions
         [
-            'Circular' => '',
+            \JWeiland\Circular\Controller\CircularController::class => '',
         ]
     );
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['circularFiles']
         = \JWeiland\Circular\Updates\FilesUpdateWizard::class;
+
+    // Add circular plugin to new element wizard
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:circular/Configuration/TSconfig/ContentElementWizard.tsconfig">'
+    );
 
     // Register SVG Icon Identifier
     $svgIcons = [
