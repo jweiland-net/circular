@@ -19,6 +19,7 @@ use JWeiland\Circular\Domain\Repository\CircularRepository;
 use JWeiland\Circular\Domain\Repository\DepartmentRepository;
 use JWeiland\Circular\Domain\Repository\SysDmailRepository;
 use JWeiland\Circular\Domain\Repository\TelephoneRepository;
+use JWeiland\Circular\Event\PostProcessFluidVariablesEvent;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -85,10 +86,11 @@ class CircularController extends ActionController
 
     public function listAction(): void
     {
-        $circulars = $this->circularRepository->findBySend(0);
-        $this->view->assign('circulars', $circulars);
-        $this->view->assign('departments', $this->departmentRepository->findAll());
-        $this->view->assign('categories', $this->getCategories());
+        $this->postProcessAndAssignFluidVariables([
+            'circulars' => $this->circularRepository->findBySend(0),
+            'departments' => $this->departmentRepository->findAll(),
+            'categories' => $this->getCategories(),
+        ]);
     }
 
     public function showAction(Circular $circular): void
@@ -220,5 +222,19 @@ class CircularController extends ActionController
         }
 
         return $categories;
+    }
+
+    protected function postProcessAndAssignFluidVariables(array $variables = []): void
+    {
+        /** @var PostProcessFluidVariablesEvent $event */
+        $event = $this->eventDispatcher->dispatch(
+            new PostProcessFluidVariablesEvent(
+                $this->request,
+                $this->settings,
+                $variables
+            )
+        );
+
+        $this->view->assignMultiple($event->getFluidVariables());
     }
 }

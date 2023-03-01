@@ -6,3 +6,8 @@ services:
 
   JWeiland\Circular\:
     resource: '../Classes/*'
+
+  JWeiland\Circular\EventListener\AddPaginatorEventListener:
+    tags:
+    - name: event.listener
+      event: JWeiland\Circular\Event\PostProcessFluidVariablesEvent

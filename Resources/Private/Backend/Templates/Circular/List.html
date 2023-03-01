@@ -13,16 +13,17 @@
 				<th> </th>
 			</tr>
 
-			<f:be.widget.paginate objects="{circulars}" as="paginatedCirculars" configuration="{itemsPerPage: 50, insertAbove: 1, insertBelow: 0, recordsLabel: 'Rundschreiben'}">
-				<f:for each="{paginatedCirculars}" as="circular">
-					<tr>
-						<td><f:form.checkbox name="circulars[]" value="{circular.uid}" /></td>
-						<td><f:link.action action="show" arguments="{circular: circular}">{circular.number}</f:link.action></td>
-						<td>{circular.title}</td>
-						<td><f:link.action action="delete" arguments="{circular: circular}">Delete</f:link.action></td>
-					</tr>
-				</f:for>
-			</f:be.widget.paginate>
+			<f:for each="{circulars}" as="circular">
+				<tr>
+					<td><f:form.checkbox name="circulars[]" value="{circular.uid}" /></td>
+					<td><f:link.action action="show" arguments="{circular: circular}">{circular.number}</f:link.action></td>
+					<td>{circular.title}</td>
+					<td><f:link.action action="delete" arguments="{circular: circular}">Delete</f:link.action></td>
+				</tr>
+			</f:for>
+
+			<f:render partial="Component/Pagination"
+								arguments="{pagination: pagination, paginator: paginator, actionName: 'list'}" />
 		</table>
 		<f:form.submit value="Prepare selected" />
 	</f:form>
