@@ -114,7 +114,7 @@ class SysDmail extends AbstractEntity
     /**
      * @var string
      */
-    protected $mailcontent = '';
+    protected $mailContent = '';
 
     /**
      * @var int
@@ -347,15 +347,15 @@ class SysDmail extends AbstractEntity
         $this->renderedsize = $renderedsize;
     }
 
-    public function getMailcontent(): string
+    public function getMailContent(): string
     {
-        return $this->mailcontent;
+        return $this->mailContent;
     }
 
-    public function setMailcontent(string $mailcontent): void
+    public function setMailContent(string $mailContent): void
     {
-        $this->mailcontent = $mailcontent;
-        $this->renderedsize = strlen($mailcontent);
+        $this->mailContent = $mailContent;
+        $this->renderedsize = strlen($mailContent);
     }
 
     public function getScheduled(): int

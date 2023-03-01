@@ -31,8 +31,8 @@ module.tx_circular {
     layoutRootPath = EXT:circular/Resources/Private/Backend/Layouts/
   }
 
-  persistence {
-    # cat=module.tx_circular//a; type=string; label=Default storage PID
-    storagePid =
+  settings {
+    # cat=module.tx_circular//b; type=int+; label=Storage Folder of telephonedirectory records: Enter the Page UID where you have inserted the records of EXT:telephonedirectory
+    pidOfTelephoneDirectory = 0
   }
 }

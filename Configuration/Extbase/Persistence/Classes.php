@@ -3,16 +3,9 @@
 return [
    \JWeiland\Circular\Domain\Model\SysDmail::class => [
        'tableName' => 'sys_dmail',
-       'columns' => [
-           'mailcontent' => [
-               'config' => [
-                   'type' => 'passthrough',
-               ],
-           ],
-           'query_info' => [
-               'config' => [
-                   'type' => 'passthrough',
-               ],
+       'properties' => [
+           'mailContent' => [
+               'fieldName' => 'mailContent',
            ],
        ],
    ],

@@ -1,3 +1,7 @@
+page.includeJSFooterlibs {
+  circular = EXT:circular/Resources/Public/JavaScript/circular.js
+}
+
 plugin.tx_circular {
   view {
     templateRootPaths {
@@ -19,8 +23,6 @@ plugin.tx_circular {
   }
 
   settings {
-    pidOfTelephoneDirectory = 0
-
     pageBrowser {
       itemsPerPage = {$plugin.tx_circular.settings.pageBrowser.itemsPerPage}
     }
@@ -30,7 +32,6 @@ plugin.tx_circular {
 # Module configuration
 module.tx_circular < plugin.tx_circular
 module.tx_circular {
-  persistence.storagePid = {$module.tx_circular.persistence.storagePid}
   view {
     templateRootPaths {
       0 = {$module.tx_circular.view.templateRootPath}
@@ -42,20 +43,8 @@ module.tx_circular {
       0 = {$module.tx_circular.view.layoutRootPath}
     }
   }
+
+  settings {
+    pidOfTelephoneDirectory = {$module.tx_circular.settings.pidOfTelephoneDirectory}
+  }
 }
-
-page.includeJSFooterlibs {
-  circular = EXT:circular/Resources/Public/JavaScript/circular.js
-}
-
-plugin.tx_circular._CSS_DEFAULT_STYLE (
-	textarea.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-)
