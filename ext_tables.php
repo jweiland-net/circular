@@ -5,17 +5,17 @@ if (!defined('TYPO3_MODE')) {
 
 call_user_func(static function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'JWeiland.circular',
+        'Circular',
         'Circular',
         'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.title'
     );
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        'JWeiland.circular',
+        'Circular',
         'web',     // Make module a submodule of 'web'
         'circular',    // Submodule key
         '',                        // Position
         [
-            'Circular' => 'list, show, prepare',
+            \JWeiland\Circular\Controller\CircularController::class => 'list, show, prepare',
         ],
         [
             'access' => 'user,group',

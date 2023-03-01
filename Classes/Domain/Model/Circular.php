@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace JWeiland\Circular\Domain\Model;
 
 use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -32,7 +33,7 @@ class Circular extends AbstractEntity
     protected $title = '';
 
     /**
-     * @var \JWeiland\Circular\Domain\Model\Category
+     * @var Category
      */
     protected $category;
 
@@ -42,7 +43,7 @@ class Circular extends AbstractEntity
     protected $dateOfCircular;
 
     /**
-     * @var \JWeiland\Circular\Domain\Model\Department
+     * @var Department
      */
     protected $department;
 
@@ -54,7 +55,7 @@ class Circular extends AbstractEntity
     protected $send = false;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @var ObjectStorage<FileReference>
      */
     protected $files;
 
@@ -63,6 +64,9 @@ class Circular extends AbstractEntity
         $this->files = new ObjectStorage();
     }
 
+    /**
+     * Called again with initialize object, as fetching an entity from the DB does not use the constructor
+     */
     public function initializeObject(): void
     {
         $this->files = $this->files ?? new ObjectStorage();
