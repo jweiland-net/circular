@@ -20,19 +20,3 @@ plugin.tx_circular {
     }
   }
 }
-
-module.tx_circular {
-  view {
-    # cat=module.tx_circular/file; type=string; label=Path to template root (BE)
-    templateRootPath = EXT:circular/Resources/Private/Backend/Templates/
-    # cat=module.tx_circular/file; type=string; label=Path to template partials (BE)
-    partialRootPath = EXT:circular/Resources/Private/Backend/Partials/
-    # cat=module.tx_circular/file; type=string; label=Path to template layouts (BE)
-    layoutRootPath = EXT:circular/Resources/Private/Backend/Layouts/
-  }
-
-  settings {
-    # cat=module.tx_circular//b; type=int+; label=Storage Folder of telephonedirectory records: Enter the Page UID where you have inserted the records of EXT:telephonedirectory
-    pidOfTelephoneDirectory = 0
-  }
-}

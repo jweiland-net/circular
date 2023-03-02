@@ -28,23 +28,3 @@ plugin.tx_circular {
     }
   }
 }
-
-# Module configuration
-module.tx_circular < plugin.tx_circular
-module.tx_circular {
-  view {
-    templateRootPaths {
-      0 = {$module.tx_circular.view.templateRootPath}
-    }
-    partialRootPaths {
-      0 = {$module.tx_circular.view.partialRootPath}
-    }
-    layoutRootPaths {
-      0 = {$module.tx_circular.view.layoutRootPath}
-    }
-  }
-
-  settings {
-    pidOfTelephoneDirectory = {$module.tx_circular.settings.pidOfTelephoneDirectory}
-  }
-}
