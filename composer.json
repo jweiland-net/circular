@@ -4,7 +4,7 @@
 	"description": "Organize your circular records incl. PDF download",
 	"license": "GPL-2.0-or-later",
 	"keywords": ["typo3", "TYPO3 CMS", "circular", "circular"],
-	"homepage": "http://www.jweiland.net",
+	"homepage": "https://jweiland.net",
 	"authors": [
 		{
 			"name": "Stefan Froemken",
@@ -26,6 +26,9 @@
 		"nimut/testing-framework": "^6.0",
 		"phpunit/phpunit": "^9.5",
 		"phpspec/prophecy-phpunit": "^2.0"
+	},
+	"replace": {
+		"typo3-ter/circular": "self.version"
 	},
 	"autoload": {
 		"psr-4": {
