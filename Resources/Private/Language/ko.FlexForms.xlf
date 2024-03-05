@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="ko">
+    <header/>
+    <body>
+      <trans-unit id="sheetGeneral" xml:space="preserve">
+				<source>General</source>
+			<target state="needs-translation">General</target></trans-unit>
+      <trans-unit id="textForHint" xml:space="preserve">
+				<source>Text for hint</source>
+			<target state="needs-translation">Text for hint</target></trans-unit>
+    </body>
+  </file>
+</xliff>
