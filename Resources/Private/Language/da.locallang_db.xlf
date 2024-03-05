@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="da">
+    <header/>
+    <body>
+      <trans-unit id="plugin.circular.title">
+        <source>Circular</source>
+        <target state="needs-translation">Circular</target>
+      </trans-unit>
+      <trans-unit id="plugin.circular.description">
+        <source>List and show circulars</source>
+        <target state="needs-translation">List and show circulars</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular">
+        <source>Circular</source>
+        <target state="needs-translation">Circular</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.number">
+        <source>Number</source>
+        <target state="needs-translation">Number</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.title">
+        <source>Title</source>
+        <target state="needs-translation">Title</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category">
+        <source>Category</source>
+        <target state="needs-translation">Category</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category.circular">
+        <source>Circulars</source>
+        <target state="needs-translation">Circulars</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category.aboutDisposal">
+        <source>About Disposal</source>
+        <target state="needs-translation">About Disposal</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category.vacancy">
+        <source>Vacancy</source>
+        <target state="needs-translation">Vacancy</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.date_of_circular">
+        <source>Date Of Circular</source>
+        <target state="needs-translation">Date Of Circular</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.send">
+        <source>Send</source>
+        <target state="needs-translation">Send</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.department">
+        <source>Department</source>
+        <target state="needs-translation">Department</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.files">
+        <source>File</source>
+        <target state="needs-translation">File</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_department">
+        <source>Department</source>
+        <target state="needs-translation">Department</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_department.title">
+        <source>Title</source>
+        <target state="needs-translation">Title</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_category">
+        <source>Categories</source>
+        <target state="needs-translation">Categories</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_category.title">
+        <source>Title</source>
+        <target state="needs-translation">Title</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
