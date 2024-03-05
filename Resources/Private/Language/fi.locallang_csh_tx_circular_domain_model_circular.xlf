@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="fi">
+    <header/>
+    <body>
+      <trans-unit id="number.description">
+        <source>Number</source>
+        <target state="needs-translation">Number</target>
+      </trans-unit>
+      <trans-unit id="title.description">
+        <source>Title</source>
+        <target state="needs-translation">Title</target>
+      </trans-unit>
+      <trans-unit id="category.description">
+        <source>Category</source>
+        <target state="needs-translation">Category</target>
+      </trans-unit>
+      <trans-unit id="date_of_circular.description">
+        <source>Date of Circular</source>
+        <target state="needs-translation">Date of Circular</target>
+      </trans-unit>
+      <trans-unit id="send.description">
+        <source>Circular was send?</source>
+        <target state="needs-translation">Circular was send?</target>
+      </trans-unit>
+      <trans-unit id="department.description">
+        <source>Department</source>
+        <target state="needs-translation">Department</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
