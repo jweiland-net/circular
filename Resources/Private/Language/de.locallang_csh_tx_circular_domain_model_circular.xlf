@@ -3,29 +3,29 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="de">
     <header/>
     <body>
-      <trans-unit id="number.description">
+      <trans-unit id="number.description" approved="yes">
         <source>Number</source>
-        <target state="needs-translation">Number</target>
+        <target state="final">Nummer</target>
       </trans-unit>
-      <trans-unit id="title.description">
+      <trans-unit id="title.description" approved="yes">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="final">Titel</target>
       </trans-unit>
-      <trans-unit id="category.description">
+      <trans-unit id="category.description" approved="yes">
         <source>Category</source>
-        <target state="needs-translation">Category</target>
+        <target state="final">Kategorie</target>
       </trans-unit>
-      <trans-unit id="date_of_circular.description">
+      <trans-unit id="date_of_circular.description" approved="yes">
         <source>Date of Circular</source>
-        <target state="needs-translation">Date of Circular</target>
+        <target state="final">Datum des Rundschreibens</target>
       </trans-unit>
-      <trans-unit id="send.description">
+      <trans-unit id="send.description" approved="yes">
         <source>Circular was send?</source>
-        <target state="needs-translation">Circular was send?</target>
+        <target state="final">Wurde das Rundschreiben bereits versendet?</target>
       </trans-unit>
-      <trans-unit id="department.description">
+      <trans-unit id="department.description" approved="yes">
         <source>Department</source>
-        <target state="needs-translation">Department</target>
+        <target state="final">Abteilung</target>
       </trans-unit>
     </body>
   </file>
