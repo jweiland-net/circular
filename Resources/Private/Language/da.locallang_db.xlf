@@ -19,9 +19,9 @@
         <source>Number</source>
         <target state="needs-translation">Number</target>
       </trans-unit>
-      <trans-unit id="tx_circular_domain_model_circular.title">
+      <trans-unit id="tx_circular_domain_model_circular.title" approved="yes">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="final">Titel</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.category">
         <source>Category</source>
@@ -59,17 +59,17 @@
         <source>Department</source>
         <target state="needs-translation">Department</target>
       </trans-unit>
-      <trans-unit id="tx_circular_domain_model_department.title">
+      <trans-unit id="tx_circular_domain_model_department.title" approved="yes">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="final">Titel</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_category">
         <source>Categories</source>
         <target state="needs-translation">Categories</target>
       </trans-unit>
-      <trans-unit id="tx_circular_domain_model_category.title">
+      <trans-unit id="tx_circular_domain_model_category.title" approved="yes">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="final">Titel</target>
       </trans-unit>
     </body>
   </file>
