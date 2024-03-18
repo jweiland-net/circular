@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="es-ES">
     <header/>
     <body>
-      <trans-unit id="title.description">
+      <trans-unit id="title.description" approved="yes">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="final">Título</target>
       </trans-unit>
     </body>
   </file>
