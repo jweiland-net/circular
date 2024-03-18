@@ -6,9 +6,9 @@
       <trans-unit id="sheetGeneral" xml:space="preserve">
 				<source>General</source>
 			<target state="needs-translation">General</target></trans-unit>
-      <trans-unit id="textForHint" xml:space="preserve">
+      <trans-unit id="textForHint" xml:space="preserve" approved="yes">
 				<source>Text for hint</source>
-			<target state="needs-translation">Text for hint</target></trans-unit>
+			<target state="final">Texto para pista</target></trans-unit>
     </body>
   </file>
 </xliff>
