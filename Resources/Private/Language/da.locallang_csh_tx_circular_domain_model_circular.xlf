@@ -7,9 +7,9 @@
         <source>Number</source>
         <target state="needs-translation">Number</target>
       </trans-unit>
-      <trans-unit id="title.description">
+      <trans-unit id="title.description" approved="yes">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="final">Titel</target>
       </trans-unit>
       <trans-unit id="category.description">
         <source>Category</source>
