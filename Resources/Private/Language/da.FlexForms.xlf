@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="de">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="da">
     <header/>
     <body>
       <trans-unit id="sheetGeneral" xml:space="preserve" approved="yes">
 				<source>General</source>
-			<target state="final">Allgemein</target></trans-unit>
+			<target state="final">Generelt</target></trans-unit>
       <trans-unit id="textForHint" xml:space="preserve" approved="yes">
 				<source>Text for hint</source>
-			<target state="final">Hinweistext der bei Klick angezeigt werden soll, wenn keine Datei zugeordnet wurde</target></trans-unit>
+			<target state="final">Tekst til ledetråd</target></trans-unit>
     </body>
   </file>
 </xliff>

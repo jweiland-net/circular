@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="de">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="es-ES">
     <header/>
     <body>
       <trans-unit id="tx_circular_domain_model_circular" approved="yes">
         <source>Circulars</source>
-        <target state="final">Rundschreiben</target>
+        <target state="final">Circulares</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.number" approved="yes">
         <source>Number</source>
-        <target state="final">Nr.</target>
+        <target state="final">Número</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.title" approved="yes">
         <source>Title</source>
-        <target state="final">Titel</target>
+        <target state="final">Título</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.category" approved="yes">
         <source>Category</source>
-        <target state="final">Kategorie</target>
+        <target state="final">Categoría</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.category.circular" approved="yes">
         <source>Circulars</source>
-        <target state="final">Rundschreiben</target>
+        <target state="final">Circulares</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.category.aboutDisposal" approved="yes">
         <source>About Disposal</source>
-        <target state="final">Rundverfügung A</target>
+        <target state="final">Acerca de la Eliminación</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.category.vacancy" approved="yes">
         <source>Vacancy</source>
-        <target state="final">Stellenausschreibung</target>
+        <target state="final">Vacante</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.date_of_circular" approved="yes">
         <source>Date of Circular</source>
-        <target state="final">Datum</target>
+        <target state="final">Fecha de Circular</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.send" approved="yes">
         <source>Circular was send?</source>
-        <target state="final">Wurde das Rundschreiben bereits versendet?</target>
+        <target state="final">¿Circular fue enviado?</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.department" approved="yes">
         <source>Department</source>
-        <target state="final">Dienststelle</target>
+        <target state="final">Departamento</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_circular.files" approved="yes">
         <source>File</source>
-        <target state="final">Datei</target>
+        <target state="final">Archivo</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_department" approved="yes">
         <source>Departments</source>
-        <target state="final">Dienststellen</target>
+        <target state="final">Departamentos</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_department.title" approved="yes">
         <source>Title</source>
-        <target state="final">Titel</target>
+        <target state="final">Título</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_category" approved="yes">
         <source>Categories</source>
-        <target state="final">Kategorien</target>
+        <target state="final">Categorías</target>
       </trans-unit>
       <trans-unit id="tx_circular_domain_model_category.title" approved="yes">
         <source>Title</source>
-        <target state="final">Titel</target>
+        <target state="final">Título</target>
       </trans-unit>
       <trans-unit id="search" approved="yes">
         <source>Search</source>
-        <target state="final">Suche</target>
+        <target state="final">Buscar</target>
       </trans-unit>
       <trans-unit id="noResults" approved="yes">
         <source>No results found</source>
-        <target state="final">Keine Ergebnisse gefunden</target>
+        <target state="final">No se encontraron resultados</target>
       </trans-unit>
       <trans-unit id="hint" approved="yes">
         <source>Hint</source>
-        <target state="final">Hinweis</target>
+        <target state="final">Pista</target>
       </trans-unit>
       <trans-unit id="of" approved="yes">
         <source>of</source>
-        <target state="final">vom</target>
+        <target state="final">de</target>
       </trans-unit>
       <trans-unit id="pageBrowser.first">
         <source>First</source>
