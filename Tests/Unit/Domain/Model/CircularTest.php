@@ -42,7 +42,7 @@ class CircularTest extends UnitTestCase
     {
         self::assertSame(
             '',
-            $this->subject->getNumber()
+            $this->subject->getNumber(),
         );
     }
 
@@ -55,7 +55,7 @@ class CircularTest extends UnitTestCase
 
         self::assertSame(
             'foo bar',
-            $this->subject->getNumber()
+            $this->subject->getNumber(),
         );
     }
 
@@ -66,7 +66,7 @@ class CircularTest extends UnitTestCase
     {
         self::assertSame(
             '',
-            $this->subject->getTitle()
+            $this->subject->getTitle(),
         );
     }
 
@@ -79,7 +79,7 @@ class CircularTest extends UnitTestCase
 
         self::assertSame(
             'foo bar',
-            $this->subject->getTitle()
+            $this->subject->getTitle(),
         );
     }
 
@@ -93,7 +93,7 @@ class CircularTest extends UnitTestCase
 
         self::assertSame(
             $instance,
-            $this->subject->getCategory()
+            $this->subject->getCategory(),
         );
     }
 
@@ -107,7 +107,7 @@ class CircularTest extends UnitTestCase
 
         self::assertSame(
             $date,
-            $this->subject->getDateOfCircular()
+            $this->subject->getDateOfCircular(),
         );
     }
 
@@ -121,7 +121,7 @@ class CircularTest extends UnitTestCase
 
         self::assertSame(
             $instance,
-            $this->subject->getDepartment()
+            $this->subject->getDepartment(),
         );
     }
 
@@ -131,7 +131,7 @@ class CircularTest extends UnitTestCase
     public function getSendInitiallyReturnsFalse(): void
     {
         self::assertFalse(
-            $this->subject->getSend()
+            $this->subject->getSend(),
         );
     }
 
@@ -142,7 +142,7 @@ class CircularTest extends UnitTestCase
     {
         $this->subject->setSend(true);
         self::assertTrue(
-            $this->subject->getSend()
+            $this->subject->getSend(),
         );
     }
 
@@ -153,7 +153,7 @@ class CircularTest extends UnitTestCase
     {
         self::assertSame(
             [],
-            $this->subject->getFiles()->toArray()
+            $this->subject->getFiles()->toArray(),
         );
     }
 
@@ -174,7 +174,7 @@ class CircularTest extends UnitTestCase
 
         self::assertSame(
             $objectStorage,
-            $this->subject->getFiles()
+            $this->subject->getFiles(),
         );
     }
 }
