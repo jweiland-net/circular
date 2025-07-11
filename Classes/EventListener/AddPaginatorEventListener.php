@@ -20,12 +20,9 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
  */
 class AddPaginatorEventListener extends AbstractControllerEventListener
 {
-    /**
-     * @var int
-     */
-    protected $itemsPerPage = 15;
+    protected int $itemsPerPage = 15;
 
-    protected $allowedControllerActions = [
+    protected array $allowedControllerActions = [
         'Circular' => [
             'list',
         ],
@@ -37,7 +34,7 @@ class AddPaginatorEventListener extends AbstractControllerEventListener
             $paginator = new QueryResultPaginator(
                 $event->getFluidVariables()['circulars'],
                 $this->getCurrentPage($event),
-                $this->getItemsPerPage($event)
+                $this->getItemsPerPage($event),
             );
 
             $event->addFluidVariable('actionName', $event->getActionName());

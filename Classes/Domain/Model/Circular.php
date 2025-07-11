@@ -22,42 +22,24 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Circular extends AbstractEntity
 {
     /**
-     * @var string
      * @Extbase\Validate("NotEmpty")
      */
-    protected $number = '';
+    protected string $number = '';
 
-    /**
-     * @var string
-     */
-    protected $title = '';
+    protected string $title = '';
 
-    /**
-     * @var Category
-     */
-    protected $category;
+    protected Category $category;
 
-    /**
-     * @var \DateTime
-     */
-    protected $dateOfCircular;
+    protected \DateTime $dateOfCircular;
 
-    /**
-     * @var Department
-     */
-    protected $department;
+    protected Department $department;
 
-    /**
-     * Circular was send?
-     *
-     * @var bool
-     */
-    protected $send = false;
+    protected bool $send = false;
 
     /**
      * @var ObjectStorage<FileReference>
      */
-    protected $files;
+    protected ?ObjectStorage $files = null;
 
     public function __construct()
     {
@@ -137,7 +119,7 @@ class Circular extends AbstractEntity
         $this->send = $send;
     }
 
-    public function getFiles(): ObjectStorage
+    public function getFiles(): ?ObjectStorage
     {
         return $this->files;
     }

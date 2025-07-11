@@ -23,19 +23,19 @@ class AbstractControllerEventListener
      *
      * @var array
      */
-    protected $allowedControllerActions = [];
+    protected array $allowedControllerActions = [];
 
     protected function isValidRequest(ControllerActionEventInterface $event): bool
     {
         return
             array_key_exists(
                 $event->getControllerName(),
-                $this->allowedControllerActions
+                $this->allowedControllerActions,
             )
             && in_array(
                 $event->getActionName(),
                 $this->allowedControllerActions[$event->getControllerName()],
-                true
+                true,
             );
     }
 }

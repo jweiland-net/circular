@@ -14,6 +14,7 @@ namespace JWeiland\Circular\Controller;
 use JWeiland\Circular\Domain\Model\Circular;
 use JWeiland\Circular\Domain\Repository\CircularRepository;
 use JWeiland\Circular\Event\PostProcessFluidVariablesEvent;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -21,10 +22,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class CircularController extends ActionController
 {
-    /**
-     * @var CircularRepository
-     */
-    protected $circularRepository;
+    protected CircularRepository $circularRepository;
 
     public function injectCircularRepository(CircularRepository $circularRepository): void
     {
@@ -38,9 +36,11 @@ class CircularController extends ActionController
         ]);
     }
 
-    public function showAction(Circular $circular): void
+    public function showAction(Circular $circular): ResponseInterface
     {
         $this->view->assign('circular', $circular);
+
+        return $this->htmlResponse();
     }
 
     protected function postProcessAndAssignFluidVariables(array $variables = []): void
@@ -50,8 +50,8 @@ class CircularController extends ActionController
             new PostProcessFluidVariablesEvent(
                 $this->request,
                 $this->settings,
-                $variables
-            )
+                $variables,
+            ),
         );
 
         $this->view->assignMultiple($event->getFluidVariables());

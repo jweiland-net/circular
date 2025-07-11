@@ -16,6 +16,4 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Repository to show a list of departments
  */
-class DepartmentRepository extends Repository
-{
-}
+class DepartmentRepository extends Repository {}
