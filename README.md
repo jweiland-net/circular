@@ -58,6 +58,13 @@ DirectMailTeam\DirectMail\Dmailer::ensureCorrectEncoding(): Argument #1 ($inputS
 `circular` creates recipient records from employee records of `telephonedirectory`.
 As `direct_mail` needs a `name` column defined here:
 
+## Support
+
+Free Support is available via [GitHub Issue Tracker](https://github.com/jweiland-net/circular/issues).
+
+For commercial support, please contact us at [support@jweiland.net](support@jweiland.net).
+
+
 ```
 return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['defaultRecipFields']
 ```
