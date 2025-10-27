@@ -7,7 +7,7 @@
 [![Monthly Downloads][extension-monthly-downloads]][extension-packagist-url]
 [![TYPO3 13.4][TYPO3-shield]][TYPO3-13-url]
 
-![Build Status](https://github.com/jweiland-net/daycarecenters/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/jweiland-net/circular/workflows/ci.yml/badge.svg)
 
 Circular is an extension for TYPO3 CMS. It shows you a list of circular records incl.
 detail view.
@@ -90,6 +90,6 @@ for `tt_address`, `fe_users` and others.
 
 [TYPO3-13-url]: https://get.typo3.org/version/13
 
-[TYPO3-shield]: https://img.shields.io/badge/TYPO3-12.4-green.svg?style=for-the-badge&logo=typo3
+[TYPO3-shield]: https://img.shields.io/badge/TYPO3-13.4-green.svg?style=for-the-badge&logo=typo3
 
 [LICENSE_BADGE]: https://img.shields.io/github/license/jweiland-net/circular?label=license&style=for-the-badge
