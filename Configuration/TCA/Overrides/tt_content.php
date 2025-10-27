@@ -7,19 +7,31 @@
  * LICENSE file that was distributed with this source code.
  */
 
-if (!defined('TYPO3_MODE')) {
+if (!defined('TYPO3')) {
     die('Access denied.');
 }
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
+ExtensionUtility::registerPlugin(
     'Circular',
     'Circular',
     'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.title',
+    'ext-circular-circular',
+    'plugins',
+    'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.description',
 );
 
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['circular_circular'] = 'pi_flexform';
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    'circular_circular',
+ExtensionManagementUtility::addPiFlexFormValue(
+    '*',
     'FILE:EXT:circular/Configuration/FlexForms/Circular.xml',
+    'circular_circular',
+);
+
+ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--div--;Configuration,pi_flexform',
+    'circular_circular',
+    'after:subheader',
 );

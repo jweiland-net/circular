@@ -225,14 +225,12 @@ return [
         'files' => [
             'exclude' => true,
             'label' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular.files',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'files',
-                [
-                    'maxitems' => 1,
-                    'minitems' => 0,
-                ],
-                'pdf',
-            ),
+            'config' => [
+                'type' => 'file',
+                'maxitems' => 1,
+                'minitems' => 0,
+                'allowed' => 'pdf'
+            ],
             'default' => '',
         ],
     ],
