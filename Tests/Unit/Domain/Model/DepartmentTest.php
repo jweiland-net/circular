@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Domain\Model;
 
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -18,10 +19,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 class DepartmentTest extends UnitTestCase
 {
-    /**
-     * @var Department
-     */
-    protected $subject;
+    protected Department $subject;
 
     public function setUp(): void
     {
@@ -33,9 +31,7 @@ class DepartmentTest extends UnitTestCase
         unset($this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTitleInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -44,9 +40,7 @@ class DepartmentTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTitleSetsTitle(): void
     {
         $this->subject->setTitle('foo bar');

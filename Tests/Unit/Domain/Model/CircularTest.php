@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Domain\Model;
 
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -20,10 +21,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 class CircularTest extends UnitTestCase
 {
-    /**
-     * @var Circular
-     */
-    protected $subject;
+    protected Circular $subject;
 
     public function setUp(): void
     {
@@ -35,9 +33,7 @@ class CircularTest extends UnitTestCase
         unset($this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNumberInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -46,9 +42,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setNumberSetsNumber(): void
     {
         $this->subject->setNumber('foo bar');
@@ -59,9 +53,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTitleInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -70,9 +62,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTitleSetsTitle(): void
     {
         $this->subject->setTitle('foo bar');
@@ -83,9 +73,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setCategorySetsCategory(): void
     {
         $instance = new Category();
@@ -97,9 +85,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDateOfCircularSetsDateOfCircular(): void
     {
         $date = new \DateTime();
@@ -111,9 +97,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDepartmentSetsDepartment(): void
     {
         $instance = new Department();
@@ -125,9 +109,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSendInitiallyReturnsFalse(): void
     {
         self::assertFalse(
@@ -135,9 +117,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSendSetsSend(): void
     {
         $this->subject->setSend(true);
@@ -146,9 +126,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFilesInitiallyReturnsEmptyObjectStorage(): void
     {
         self::assertSame(
@@ -157,9 +135,7 @@ class CircularTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setFilesSetsFiles(): void
     {
         $file1 = new FileReference();
