@@ -1,0 +1,43 @@
+categories:
+  circular:
+    label: 'circular'
+  circular.templates:
+    label: 'Templates'
+    parent: circular
+  circular.pages:
+    label: 'Pages'
+    parent: circular
+  circular.settings:
+    label: 'Settings'
+    parent: circular
+settings:
+  circular.templateRootPath:
+    label: 'Templates'
+    category: circular.templates
+    description: 'Path to template root'
+    type: string
+    default: 'EXT:circular/Resources/Private/Templates/'
+  circular.partialRootPath:
+    label: 'Partials'
+    category: circular.templates
+    description: 'Path to partial root'
+    type: string
+    default: 'EXT:circular/Resources/Private/Partials/'
+  circular.layoutRootPath:
+    label: 'Layouts'
+    category: circular.templates
+    description: 'Path to layout root'
+    type: string
+    default: 'EXT:circular/Resources/Private/Layouts/'
+  circular.storagePid:
+    label: 'Default storage PID'
+    category: circular.settings
+    description: 'Folder that stores all POIs'
+    type: int
+    default: 0
+  circular.pageBrowser.itemsPerPage:
+    label: 'Items per page for pagination'
+    category: 'circular.settings'
+    description: 'Number of results that needs to be shown on listing page'
+    type: int
+    default: 15

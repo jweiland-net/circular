@@ -6,25 +6,25 @@ plugin.tx_circular {
   view {
     templateRootPaths {
       0 = EXT:circular/Resources/Private/Templates/
-      1 = {$plugin.tx_circular.view.templateRootPath}
+      1 = {$circular.templateRootPath}
     }
     partialRootPaths {
       0 = EXT:circular/Resources/Private/Partials/
-      1 = {$plugin.tx_circular.view.partialRootPath}
+      1 = {$circular.partialRootPath}
     }
     layoutRootPaths {
       0 = EXT:circular/Resources/Private/Layouts/
-      1 = {$plugin.tx_circular.view.layoutRootPath}
+      1 = {$circular.layoutRootPath}
     }
   }
 
   persistence {
-    storagePid = {$plugin.tx_circular.persistence.storagePid}
+    storagePid = {$circular.storagePid}
   }
 
   settings {
     pageBrowser {
-      itemsPerPage = {$plugin.tx_circular.settings.pageBrowser.itemsPerPage}
+      itemsPerPage = {$circular.pageBrowser.itemsPerPage}
     }
   }
 }
