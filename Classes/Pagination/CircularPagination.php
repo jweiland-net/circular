@@ -11,9 +11,9 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Pagination;
 
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Pagination\PaginationInterface;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CircularPagination implements PaginationInterface
 {
@@ -26,8 +26,9 @@ class CircularPagination implements PaginationInterface
     public function __construct(PaginatorInterface $paginator)
     {
         $this->paginator = $paginator;
+        $pluginArguments = $this->getPluginArguments($this->pluginNamespace);
 
-        foreach (GeneralUtility::_GPmerged($this->pluginNamespace) as $argumentName => $argument) {
+        foreach ($pluginArguments as $argumentName => $argument) {
             if ($argumentName[0] === '_' && $argumentName[1] === '_') {
                 continue;
             }
@@ -118,5 +119,33 @@ class CircularPagination implements PaginationInterface
         }
 
         return $this->paginator->getKeyOfLastPaginatedItem() + 1;
+    }
+
+    public function getAllPageNumbers(): array
+    {
+        return range($this->getFirstPageNumber(), $this->getLastPageNumber());
+    }
+
+    /**
+     * Returns the plugin arguments from the request
+     *
+     * @return array<string, mixed> The plugin arguments
+     */
+    public function getPluginArguments(string $pluginNamespace): array
+    {
+        $request = $this->getRequestFromGlobalScope();
+        $getMergedWithPost = $request->getQueryParams()[$pluginNamespace] ?? [];
+        $postArgument = $request->getParsedBody()[$pluginNamespace] ?? [];
+        ArrayUtility::mergeRecursiveWithOverrule($getMergedWithPost, $postArgument);
+
+        return $getMergedWithPost;
+    }
+
+    /**
+     * Returns the current request from the global scope
+     */
+    public function getRequestFromGlobalScope(): ServerRequestInterface
+    {
+        return $GLOBALS['TYPO3_REQUEST'];
     }
 }
