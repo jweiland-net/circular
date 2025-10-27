@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the package jweiland/circular.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:tx_circular_domain_model_circular',
@@ -224,7 +231,7 @@ return [
                     'maxitems' => 1,
                     'minitems' => 0,
                 ],
-                'pdf'
+                'pdf',
             ),
             'default' => '',
         ],

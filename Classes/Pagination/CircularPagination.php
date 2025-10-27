@@ -17,20 +17,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CircularPagination implements PaginationInterface
 {
-    /**
-     * @var string
-     */
-    protected $pluginNamespace = 'tx_circular_circular';
+    protected string $pluginNamespace = 'tx_circular_circular';
 
-    /**
-     * @var PaginatorInterface
-     */
-    protected $paginator;
+    protected PaginatorInterface $paginator;
 
-    /**
-     * @var array
-     */
-    protected $arguments = [];
+    protected array $arguments = [];
 
     public function __construct(PaginatorInterface $paginator)
     {

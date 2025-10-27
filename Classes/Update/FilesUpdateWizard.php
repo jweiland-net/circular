@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace JWeiland\Circular\Updates;
+namespace JWeiland\Circular\Update;
 
 use Doctrine\DBAL\DBALException;
 use Psr\Log\LoggerAwareInterface;
@@ -26,33 +26,19 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var ResourceStorage
-     */
-    protected $storage;
+    protected ResourceStorage $storage;
 
-    /**
-     * @var string
-     */
-    protected $table = 'tx_circular_domain_model_circular';
+    protected string $table = 'tx_circular_domain_model_circular';
 
-    /**
-     * @var string
-     */
-    protected $fieldToMigrate = 'files';
+    protected string $fieldToMigrate = 'files';
 
-    /**
-     * @var string
-     */
-    protected $sourcePath = 'uploads/tx_circular/';
+    protected string $sourcePath = 'uploads/tx_circular/';
 
     /**
      * target folder after migration
      * Relative to fileadmin
-     *
-     * @var string
      */
-    protected $targetPath = '_migrated/circular/';
+    protected string $targetPath = '_migrated/circular/';
 
     public function getIdentifier(): string
     {
@@ -73,6 +59,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
     public function executeUpdate(): bool
     {
         $customMessage = '';
+
         try {
             $storages = GeneralUtility::makeInstance(StorageRepository::class)->findAll();
             $this->storage = $storages[0];
@@ -109,13 +96,13 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
                     $queryBuilder->expr()->isNotNull($this->fieldToMigrate),
                     $queryBuilder->expr()->neq(
                         $this->fieldToMigrate,
-                        $queryBuilder->createNamedParameter('')
+                        $queryBuilder->createNamedParameter(''),
                     ),
                     $queryBuilder->expr()->comparison(
                         'CAST(CAST(' . $queryBuilder->quoteIdentifier($this->fieldToMigrate) . ' AS DECIMAL) AS CHAR)',
                         ExpressionBuilder::NEQ,
-                        'CAST(' . $queryBuilder->quoteIdentifier($this->fieldToMigrate) . ' AS CHAR)'
-                    )
+                        'CAST(' . $queryBuilder->quoteIdentifier($this->fieldToMigrate) . ' AS CHAR)',
+                    ),
                 )
                 ->orderBy('uid')
                 ->execute();
@@ -126,7 +113,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
         } catch (DBALException $e) {
             throw new \RuntimeException(
                 'Database query failed. Error was: ' . $e->getPrevious()->getMessage(),
-                1596705829853
+                1596705829853,
             );
         }
     }
@@ -168,12 +155,12 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
                 $existingFileRecord = $queryBuilder->select('uid')->from('sys_file')->where(
                     $queryBuilder->expr()->eq(
                         'sha1',
-                        $queryBuilder->createNamedParameter($fileSha1)
+                        $queryBuilder->createNamedParameter($fileSha1),
                     ),
                     $queryBuilder->expr()->eq(
                         'storage',
-                        $queryBuilder->createNamedParameter($storageUid, \PDO::PARAM_INT)
-                    )
+                        $queryBuilder->createNamedParameter($storageUid, \PDO::PARAM_INT),
+                    ),
                 )->execute()->fetch();
 
                 // the file exists, the file does not have to be moved again
@@ -200,7 +187,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
                             'table' => $this->table,
                             'record' => $row,
                             'field' => $this->fieldToMigrate,
-                        ]
+                        ],
                     );
 
                     $format = 'File \'%s\' does not exist. Referencing field: %s.%d.%s. The reference was not migrated.';
@@ -209,7 +196,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
                         $this->sourcePath . $item,
                         $this->table,
                         $row['uid'],
-                        $this->fieldToMigrate
+                        $this->fieldToMigrate,
                     );
                     $customMessage .= PHP_EOL . $message;
                     continue;
@@ -242,8 +229,8 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
             $queryBuilder->update($this->table)->where(
                 $queryBuilder->expr()->eq(
                     'uid',
-                    $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT)
-                )
+                    $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT),
+                ),
             )->set($this->fieldToMigrate, $i)->execute();
             $dbQueries[] = str_replace(LF, ' ', $queryBuilder->getSQL());
         }

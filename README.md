@@ -1,6 +1,13 @@
 # TYPO3 Extension `circular`
 
-![Build Status](https://github.com/jweiland-net/circular/workflows/CI/badge.svg)
+[![Packagist][packagist-logo-stable]][extension-packagist-url]
+[![Latest Stable Version][extension-build-shield]][extension-ter-url]
+[![License][LICENSE_BADGE]][extension-packagist-url]
+[![Total Downloads][extension-downloads-badge]][extension-packagist-url]
+[![Monthly Downloads][extension-monthly-downloads]][extension-packagist-url]
+[![TYPO3 12.4][TYPO3-shield]][TYPO3-12-url]
+
+![Build Status](https://github.com/jweiland-net/daycarecenters/workflows/CI/badge.svg)
 
 Circular is an extension for TYPO3 CMS. It shows you a list of circular records incl.
 detail view.
@@ -66,3 +73,23 @@ but `telephonedirectory` does not have such a column, that error message appears
 
 We can't change that configuration, as that may break your existing recipient configuration
 for `tt_address`, `fe_users` and others.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[extension-build-shield]: https://poser.pugx.org/jweiland/circular/v/stable.svg?style=for-the-badge
+
+[extension-downloads-badge]: https://poser.pugx.org/jweiland/circular/d/total.svg?style=for-the-badge
+
+[extension-monthly-downloads]: https://poser.pugx.org/jweiland/circular/d/monthly?style=for-the-badge
+
+[extension-ter-url]: https://extensions.typo3.org/extension/circular/
+
+[extension-packagist-url]: https://packagist.org/packages/jweiland/circular/
+
+[packagist-logo-stable]: https://img.shields.io/badge/--grey.svg?style=for-the-badge&logo=packagist&logoColor=white
+
+[TYPO3-12-url]: https://get.typo3.org/version/12
+
+[TYPO3-shield]: https://img.shields.io/badge/TYPO3-12.4-green.svg?style=for-the-badge&logo=typo3
+
+[LICENSE_BADGE]: https://img.shields.io/github/license/jweiland-net/circular?label=license&style=for-the-badge
