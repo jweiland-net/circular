@@ -229,7 +229,7 @@ return [
                 'type' => 'file',
                 'maxitems' => 1,
                 'minitems' => 0,
-                'allowed' => 'pdf'
+                'allowed' => 'pdf',
             ],
             'default' => '',
         ],
