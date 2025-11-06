@@ -14,6 +14,7 @@ namespace JWeiland\Circular\Pagination;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Pagination\PaginationInterface;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class CircularPagination implements PaginationInterface
 {
