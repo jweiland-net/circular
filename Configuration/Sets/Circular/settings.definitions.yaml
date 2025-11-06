@@ -1,6 +1,6 @@
 categories:
   circular:
-    label: 'circular'
+    label: 'Circular'
   circular.templates:
     label: 'Templates'
     parent: circular
@@ -10,6 +10,7 @@ categories:
   circular.settings:
     label: 'Settings'
     parent: circular
+
 settings:
   circular.templateRootPath:
     label: 'Templates'
@@ -33,7 +34,7 @@ settings:
     label: 'Default storage PID'
     category: circular.settings
     description: 'Folder that stores all POIs'
-    type: int
+    type: page
     default: 0
   circular.pageBrowser.itemsPerPage:
     label: 'Items per page for pagination'

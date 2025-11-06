@@ -3,14 +3,12 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular">
 		<header/>
 		<body>
-
 			<trans-unit id="sheetGeneral" xml:space="preserve">
 				<source>General</source>
 			</trans-unit>
 			<trans-unit id="textForHint" xml:space="preserve">
 				<source>Text for hint</source>
 			</trans-unit>
-
 		</body>
 	</file>
 </xliff>

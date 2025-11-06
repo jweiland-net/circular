@@ -3,7 +3,6 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular">
 		<header/>
 		<body>
-
 			<trans-unit id="plugin.circular.title">
 				<source>Circular</source>
 				<target>Rundschreiben</target>
@@ -75,7 +74,6 @@
 				<source>Title</source>
 				<target>Titel</target>
 			</trans-unit>
-
 		</body>
 	</file>
 </xliff>
