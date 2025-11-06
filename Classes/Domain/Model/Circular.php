@@ -28,7 +28,7 @@ class Circular extends AbstractEntity
 
     protected string $title = '';
 
-    protected Category $category;
+    protected ?Category $category = null;
 
     protected \DateTime $dateOfCircular;
 
@@ -51,7 +51,7 @@ class Circular extends AbstractEntity
      */
     public function initializeObject(): void
     {
-        $this->files = $this->files ?? new ObjectStorage();
+        $this->files ??= new ObjectStorage();
     }
 
     public function getNumber(): string
