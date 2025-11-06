@@ -22,23 +22,24 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 class CircularController extends ActionController
 {
-    protected CircularRepository $circularRepository;
+    public function __construct(
+        protected CircularRepository $circularRepository,
+    ) {}
 
-    public function injectCircularRepository(CircularRepository $circularRepository): void
-    {
-        $this->circularRepository = $circularRepository;
-    }
-
-    public function listAction(): void
+    public function listAction(): ResponseInterface
     {
         $this->postProcessAndAssignFluidVariables([
             'circulars' => $this->circularRepository->findBySend(0),
         ]);
+
+        return $this->htmlResponse();
     }
 
     public function showAction(Circular $circular): ResponseInterface
     {
-        $this->view->assign('circular', $circular);
+        $this->postProcessAndAssignFluidVariables([
+            'circular' => $circular,
+        ]);
 
         return $this->htmlResponse();
     }
