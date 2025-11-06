@@ -13,4 +13,3 @@ mod.wizards.newContentElement.wizardItems.plugins {
 
 # Add CType Preview
 mod.web_layout.tt_content.preview.circular_circular = EXT:circular/Resources/Private/Templates/PluginPreview/Circular.html
-mod.web_layout.tt_content.preview.circular_forum = EXT:circular/Resources/Private/Templates/PluginPreview/Circular.html
