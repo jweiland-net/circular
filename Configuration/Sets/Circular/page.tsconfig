@@ -1,15 +1,2 @@
-mod.wizards.newContentElement.wizardItems.plugins {
-  elements {
-    circular {
-      iconIdentifier = ext-circular-circular
-      title = LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.title
-      description = LLL:EXT:circular/Resources/Private/Language/locallang_db.xlf:plugin.circular.description
-      tt_content_defValues {
-        CType = circular_circular
-      }
-    }
-  }
-}
-
 # Add CType Preview
 mod.web_layout.tt_content.preview.circular_circular = EXT:circular/Resources/Private/Templates/PluginPreview/Circular.html
