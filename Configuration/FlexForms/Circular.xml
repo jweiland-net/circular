@@ -2,20 +2,16 @@
     <sheets>
         <sDEFAULT>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:circular/Resources/Private/Language/FlexForms.xlf:sheetGeneral</sheetTitle>
-                </TCEforms>
+                <sheetTitle>LLL:EXT:circular/Resources/Private/Language/FlexForms.xlf:sheetGeneral</sheetTitle>
                 <type>array</type>
                 <el>
                     <settings.textForHint>
-                        <TCEforms>
-                            <label>LLL:EXT:circular/Resources/Private/Language/FlexForms.xlf:textForHint</label>
-                            <config>
-                                <type>input</type>
-                                <size>30</size>
-                                <eval>trim</eval>
-                            </config>
-                        </TCEforms>
+                        <label>LLL:EXT:circular/Resources/Private/Language/FlexForms.xlf:textForHint</label>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <eval>trim</eval>
+                        </config>
                     </settings.textForHint>
                 </el>
             </ROOT>
