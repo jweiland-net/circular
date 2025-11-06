@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><style>.a,.b,.d{fill:#fff;}.b,.c{stroke:#000842;}.b,.c,.d{stroke-miterlimit:10;}.c{fill:none;}.d{stroke:#f6ae2d;}</style></defs><rect class="a" width="32" height="32"/><rect class="b" x="4.5" y="4.5" width="13" height="19"/><line class="c" x1="6" y1="7.5" x2="9.73" y2="7.5"/><line class="c" x1="6" y1="9.5" x2="13" y2="9.5"/><line class="c" x1="6" y1="11.5" x2="13" y2="11.5"/><line class="c" x1="6" y1="15.5" x2="13" y2="15.5"/><line class="c" x1="6" y1="17.5" x2="13" y2="17.5"/><line class="c" x1="6" y1="19.5" x2="13" y2="19.5"/><rect class="d" x="14.46" y="10.28" width="13" height="19"/><line class="c" x1="16" y1="13.5" x2="20" y2="13.5"/><line class="c" x1="16" y1="15.28" x2="25" y2="15.28"/><line class="c" x1="16" y1="17.28" x2="25" y2="17.28"/><line class="c" x1="16" y1="21.28" x2="25" y2="21.28"/><line class="c" x1="16" y1="23.28" x2="25" y2="23.28"/><line class="c" x1="16" y1="25.28" x2="25" y2="25.28"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32">
+  <!-- Generator: Adobe Illustrator 29.8.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 160)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #576bfd;
+      }
+    </style>
+  </defs>
+  <g id="Ebene">
+    <path class="st0" d="M28,12v16h-14V12h14M30,10H12v20h18V10h0Z"/>
+    <rect class="st0" x="16" y="14" width="4" height="2"/>
+    <rect class="st0" x="16" y="18" width="10" height="2"/>
+    <rect class="st0" x="16" y="22" width="10" height="2"/>
+    <rect class="st0" x="4" y="4" width="10" height="2"/>
+    <rect class="st0" x="4" y="8" width="4" height="2"/>
+    <rect class="st0" x="4" y="12" width="4" height="2"/>
+    <polygon class="st0" points="2 2 16 2 16 8 18 8 18 0 0 0 0 20 10 20 10 18 2 18 2 2"/>
+  </g>
+</svg>

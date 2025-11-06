@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><style>.a{fill:#fff;}.b{fill:#000842;}</style></defs><rect class="a" width="32" height="32"/><path class="b" d="M25.42,15.69l3.64-6.56L25,1.8H16.84L13.2,8.37H6L1.88,15.69,6,23H13.2l3.64,6.56H25l4.07-7.32ZM17.73,3.3h6.38l3.23,5.83-3.22,5.8H17.75L14.51,9.1ZM6.84,21.52,3.6,15.69,6.84,9.87h6.35l3.23,5.82-3.23,5.83Zm10.89,6.56-3.22-5.8,3.24-5.83h6.37l3.22,5.81-3.23,5.82Z"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32">
+  <!-- Generator: Adobe Illustrator 29.8.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 160)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #576bfd;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M24.6,15l2.8-5,.6-1-.6-1-2.8-5-.6-1h-8.1l-.6,1-2.8,5h-6.6l-.6,1-2.8,5-.6,1,.6,1,2.8,5,.6,1h6.6l2.8,5,.6,1h8.1l.6-1,2.8-5,.6-1-.6-1-2.8-5ZM17.1,4h5.7l2.8,5-2.8,5h-5.7l-2.8-5,2.8-5ZM7.2,20l-2.8-5,2.8-5h5.3l2.8,5-2.8,5h-5.3ZM22.8,26h-5.7l-2.8-5,2.8-5h5.7l2.8,5-2.8,5Z"/>
+</svg>
