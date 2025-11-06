@@ -14,17 +14,15 @@ if (!defined('TYPO3')) {
 use JWeiland\Circular\Controller\CircularController;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
-call_user_func(static function () {
-    ExtensionUtility::configurePlugin(
-        'Circular',
-        'Circular',
-        [
-            CircularController::class => 'list, show',
-        ],
-        // non-cacheable actions
-        [
-            CircularController::class => '',
-        ],
-        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
-    );
-});
+ExtensionUtility::configurePlugin(
+    'Circular',
+    'Circular',
+    [
+        CircularController::class => 'list, show',
+    ],
+    // non-cacheable actions
+    [
+        CircularController::class => '',
+    ],
+    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
+);
