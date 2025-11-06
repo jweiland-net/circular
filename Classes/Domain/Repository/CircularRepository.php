@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace JWeiland\Circular\Domain\Repository;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -31,26 +33,4 @@ class CircularRepository extends Repository
     protected $defaultOrderings = [
         'dateOfCircular' => QueryInterface::ORDER_DESCENDING,
     ];
-
-    /**
-     * This method is needed by command controller to find
-     * visible, hidden and deleted circulars
-     */
-    public function getCirculars(): array
-    {
-        /** @var Query $query */
-        $query = $this->createQuery();
-
-        $queryBuilder = $this->getConnectionPool()->getQueryBuilderForTable('tx_circular_domain_model_circular');
-        $queryBuilder
-            ->select('uid', 'files')
-            ->from('tx_circular_domain_model_circular');
-
-        return $query->statement($queryBuilder)->execute(true);
-    }
-
-    protected function getConnectionPool(): ConnectionPool
-    {
-        return GeneralUtility::makeInstance(ConnectionPool::class);
-    }
 }
