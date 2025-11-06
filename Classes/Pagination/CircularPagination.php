@@ -18,16 +18,14 @@ use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class CircularPagination implements PaginationInterface
 {
-    protected string $pluginNamespace = 'tx_circular_circular';
-
-    protected PaginatorInterface $paginator;
+    private const PLUGIN_NAMESPACE = 'tx_circular_circular';
 
     protected array $arguments = [];
 
-    public function __construct(PaginatorInterface $paginator)
-    {
-        $this->paginator = $paginator;
-        $pluginArguments = $this->getPluginArguments($this->pluginNamespace);
+    public function __construct(
+        protected PaginatorInterface $paginator,
+    ) {
+        $pluginArguments = $this->getPluginArguments(self::PLUGIN_NAMESPACE);
 
         foreach ($pluginArguments as $argumentName => $argument) {
             if ($argumentName[0] === '_' && $argumentName[1] === '_') {
