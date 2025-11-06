@@ -1,7 +1,3 @@
-page.includeJSFooterlibs {
-  circular = EXT:circular/Resources/Public/JavaScript/circular.js
-}
-
 plugin.tx_circular {
   view {
     templateRootPaths {
