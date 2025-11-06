@@ -3,7 +3,6 @@
 	<file source-language="de" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular">
 		<header/>
 		<body>
-
 			<trans-unit id="sheetGeneral" xml:space="preserve">
 				<source>General</source>
 				<target>Allgemein</target>
@@ -12,7 +11,6 @@
 				<source>Text for hint</source>
 				<target>Hinweistext der bei Klick angezeigt werden soll, wenn keine Datei zugeordnet wurde</target>
 			</trans-unit>
-
 		</body>
 	</file>
 </xliff>
