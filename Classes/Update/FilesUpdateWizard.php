@@ -15,13 +15,16 @@ use Doctrine\DBAL\DBALException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Expression\ExpressionBuilder;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+#[UpgradeWizard('circularFiles')]
 class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
 {
     use LoggerAwareTrait;
@@ -39,11 +42,6 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
      * Relative to fileadmin
      */
     protected string $targetPath = '_migrated/circular/';
-
-    public function getIdentifier(): string
-    {
-        return 'circularFiles';
-    }
 
     public function getTitle(): string
     {
@@ -105,11 +103,11 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
                     ),
                 )
                 ->orderBy('uid')
-                ->execute();
+                ->executeQuery();
 
             $dbQueries[] = $queryBuilder->getSQL();
 
-            return $result->fetchAll();
+            return ($result->fetchAssociative()) ? $result->fetchAssociative() : [];
         } catch (DBALException $e) {
             throw new \RuntimeException(
                 'Database query failed. Error was: ' . $e->getPrevious()->getMessage(),
@@ -121,7 +119,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
     /**
      * Migrates a single field.
      *
-     * @throws \Exception
+     * @throws \Exception|\Doctrine\DBAL\Exception
      */
     protected function migrateField(array $row, string &$customMessage, array &$dbQueries): void
     {
@@ -159,9 +157,9 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
                     ),
                     $queryBuilder->expr()->eq(
                         'storage',
-                        $queryBuilder->createNamedParameter($storageUid, \PDO::PARAM_INT),
+                        $queryBuilder->createNamedParameter($storageUid, Connection::PARAM_INT),
                     ),
-                )->execute()->fetch();
+                )->executeQuery()->fetchOne();
 
                 // the file exists, the file does not have to be moved again
                 if (is_array($existingFileRecord)) {
@@ -216,7 +214,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
                 ];
 
                 $queryBuilder = $connectionPool->getQueryBuilderForTable('sys_file_reference');
-                $queryBuilder->insert('sys_file_reference')->values($fields)->execute();
+                $queryBuilder->insert('sys_file_reference')->values($fields)->executeStatement();
                 $dbQueries[] = str_replace(LF, ' ', $queryBuilder->getSQL());
                 ++$i;
             }
@@ -229,9 +227,9 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
             $queryBuilder->update($this->table)->where(
                 $queryBuilder->expr()->eq(
                     'uid',
-                    $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT),
+                    $queryBuilder->createNamedParameter($row['uid'], Connection::PARAM_INT),
                 ),
-            )->set($this->fieldToMigrate, $i)->execute();
+            )->set($this->fieldToMigrate, $i)->executeStatement();
             $dbQueries[] = str_replace(LF, ' ', $queryBuilder->getSQL());
         }
     }
