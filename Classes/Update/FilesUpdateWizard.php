@@ -107,7 +107,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
 
             $dbQueries[] = $queryBuilder->getSQL();
 
-            return ($result->fetchAssociative()) ? $result->fetchAssociative() : [];
+            return ($result->fetchAllAssociative()) ? $result->fetchAllAssociative() : [];
         } catch (DBALException $e) {
             throw new \RuntimeException(
                 'Database query failed. Error was: ' . $e->getPrevious()->getMessage(),
