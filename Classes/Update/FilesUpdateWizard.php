@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace JWeiland\Circular\Update;
 
-use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Exception;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Core\Environment;
@@ -75,7 +75,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
     }
 
     /**
-     * Get records from table where the field to migrate is not empty (NOT NULL and != '')
+     * Get records from the table where the field to migrate is not empty (NOT NULL and != '')
      * and also not numeric (which means that it is migrated)
      *
      * @throws \RuntimeException
@@ -108,7 +108,7 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
             $dbQueries[] = $queryBuilder->getSQL();
 
             return ($result->fetchAllAssociative()) ? $result->fetchAllAssociative() : [];
-        } catch (DBALException $e) {
+        } catch (Exception $e) {
             throw new \RuntimeException(
                 'Database query failed. Error was: ' . $e->getPrevious()->getMessage(),
                 1596705829853,
@@ -204,7 +204,6 @@ class FilesUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
             if ($fileUid > 0) {
                 $fields = [
                     'fieldname' => $this->fieldToMigrate,
-                    'table_local' => 'sys_file',
                     'pid' => ($this->table === 'pages' ? $row['uid'] : $row['pid']),
                     'uid_foreign' => $row['uid'],
                     'uid_local' => $fileUid,
