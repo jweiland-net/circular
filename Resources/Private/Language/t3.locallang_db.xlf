@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-09-15T10:21:15Z" product-name="circular" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="plugin.circular.title">
+        <source>Circular</source>
+        <target>crwdns305482:0crwdne305482:0</target>
+      </trans-unit>
+      <trans-unit id="plugin.circular.description">
+        <source>List and show circulars</source>
+        <target>crwdns305484:0crwdne305484:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular">
+        <source>Circular</source>
+        <target>crwdns305486:0crwdne305486:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.number">
+        <source>Number</source>
+        <target>crwdns305488:0crwdne305488:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.title">
+        <source>Title</source>
+        <target>crwdns305490:0crwdne305490:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category">
+        <source>Category</source>
+        <target>crwdns305492:0crwdne305492:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category.circular">
+        <source>Circulars</source>
+        <target>crwdns305494:0crwdne305494:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category.aboutDisposal">
+        <source>About Disposal</source>
+        <target>crwdns305496:0crwdne305496:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.category.vacancy">
+        <source>Vacancy</source>
+        <target>crwdns305498:0crwdne305498:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.date_of_circular">
+        <source>Date Of Circular</source>
+        <target>crwdns305500:0crwdne305500:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.send">
+        <source>Send</source>
+        <target>crwdns305502:0crwdne305502:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.department">
+        <source>Department</source>
+        <target>crwdns305504:0crwdne305504:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_circular.files">
+        <source>File</source>
+        <target>crwdns305506:0crwdne305506:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_department">
+        <source>Department</source>
+        <target>crwdns305508:0crwdne305508:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_department.title">
+        <source>Title</source>
+        <target>crwdns305510:0crwdne305510:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_category">
+        <source>Categories</source>
+        <target>crwdns305512:0crwdne305512:0</target>
+      </trans-unit>
+      <trans-unit id="tx_circular_domain_model_category.title">
+        <source>Title</source>
+        <target>crwdns305514:0crwdne305514:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
